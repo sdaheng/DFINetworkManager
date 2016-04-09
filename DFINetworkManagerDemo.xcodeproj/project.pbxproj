@@ -15,7 +15,6 @@
 		6E449D801CB8B47300165E9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E449D7E1CB8B47300165E9B /* LaunchScreen.storyboard */; };
 		6E449D8B1CB8B47300165E9B /* DFINetworkManagerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D8A1CB8B47300165E9B /* DFINetworkManagerDemoTests.m */; };
 		6E449D961CB8B47300165E9B /* DFINetworkManagerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D951CB8B47300165E9B /* DFINetworkManagerDemoUITests.m */; };
-		6E449DCA1CB8B49A00165E9B /* DFIErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449DA71CB8B49A00165E9B /* DFIErrorHandler.m */; };
 		6E449DCB1CB8B49A00165E9B /* DFINetworkAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449DA91CB8B49A00165E9B /* DFINetworkAPIRequest.m */; };
 		6E449DCC1CB8B49A00165E9B /* DFINetworkCannotConnectToHostErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449DAB1CB8B49A00165E9B /* DFINetworkCannotConnectToHostErrorHandler.m */; };
 		6E449DCD1CB8B49A00165E9B /* DFINetworkHTTPRequestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449DAD1CB8B49A00165E9B /* DFINetworkHTTPRequestService.m */; };
@@ -64,8 +63,6 @@
 		6E449D911CB8B47300165E9B /* DFINetworkManagerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DFINetworkManagerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E449D951CB8B47300165E9B /* DFINetworkManagerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFINetworkManagerDemoUITests.m; sourceTree = "<group>"; };
 		6E449D971CB8B47300165E9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E449DA61CB8B49A00165E9B /* DFIErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFIErrorHandler.h; sourceTree = "<group>"; };
-		6E449DA71CB8B49A00165E9B /* DFIErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFIErrorHandler.m; sourceTree = "<group>"; };
 		6E449DA81CB8B49A00165E9B /* DFINetworkAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFINetworkAPIRequest.h; sourceTree = "<group>"; };
 		6E449DA91CB8B49A00165E9B /* DFINetworkAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFINetworkAPIRequest.m; sourceTree = "<group>"; };
 		6E449DAA1CB8B49A00165E9B /* DFINetworkCannotConnectToHostErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFINetworkCannotConnectToHostErrorHandler.h; sourceTree = "<group>"; };
@@ -194,8 +191,7 @@
 		6E449DA31CB8B49A00165E9B /* DFINetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				6E449DA61CB8B49A00165E9B /* DFIErrorHandler.h */,
-				6E449DA71CB8B49A00165E9B /* DFIErrorHandler.m */,
+				6E449DAF1CB8B49A00165E9B /* DFINetworkManager.h */,
 				6E449DA81CB8B49A00165E9B /* DFINetworkAPIRequest.h */,
 				6E449DA91CB8B49A00165E9B /* DFINetworkAPIRequest.m */,
 				6E449DAA1CB8B49A00165E9B /* DFINetworkCannotConnectToHostErrorHandler.h */,
@@ -203,7 +199,6 @@
 				6E449DAC1CB8B49A00165E9B /* DFINetworkHTTPRequestService.h */,
 				6E449DAD1CB8B49A00165E9B /* DFINetworkHTTPRequestService.m */,
 				6E449DAE1CB8B49A00165E9B /* DFINetworkManager-Swift-Briging-Header.h */,
-				6E449DAF1CB8B49A00165E9B /* DFINetworkManager.h */,
 				6E449DB01CB8B49A00165E9B /* DFINetworkManagerDefines.h */,
 				6E449DB11CB8B49A00165E9B /* DFINetworkManagerTypes.h */,
 				6E449DB21CB8B49A00165E9B /* DFINetworkNotificationNames.h */,
@@ -433,7 +428,6 @@
 				6E449DD01CB8B49A00165E9B /* DFINetworkRequestResult.m in Sources */,
 				6E449D781CB8B47300165E9B /* ViewController.m in Sources */,
 				6E449DCE1CB8B49A00165E9B /* DFINetworkNotificationNames.m in Sources */,
-				6E449DCA1CB8B49A00165E9B /* DFIErrorHandler.m in Sources */,
 				6E449DD51CB8B49A00165E9B /* DFINetworkUDPRequestService.m in Sources */,
 				6E449DCC1CB8B49A00165E9B /* DFINetworkCannotConnectToHostErrorHandler.m in Sources */,
 				6E449DCB1CB8B49A00165E9B /* DFINetworkAPIRequest.m in Sources */,

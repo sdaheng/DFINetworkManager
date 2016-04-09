@@ -1,9 +1,9 @@
 //
 //  NetworkService.m
-//  PropertyHousekeeper
+//  DFINetworkManager
 //
 //  Created by SDH on 14/6/23.
-//  Copyright (c) 2014年 包光晖. All rights reserved.
+//  Copyright (c) 2014年 SDH. All rights reserved.
 //
 
 #import "DFINetworkService.h"
@@ -64,26 +64,6 @@
     }
 }
 
-//#ifdef REACTIVECOCOA_SUPPORT
-//
-//+ (RACSignal *)signalFetchDataByName:(NSString *)name
-//                          Paramaters:(NSDictionary *)paramaters{
-//    id <DFINetworkServiceInterface> interface = nil;
-//    
-//    id networkService = [[NSClassFromString(name) alloc] init];
-//    
-//    interface = networkService;
-//    
-//    if (interface &&
-//        [interface respondsToSelector:@selector(signalFetchDataWithURLParamaters:)]) {
-//        return [interface signalFetchDataWithURLParamaters:paramaters];
-//    }
-//    
-//    return [RACSignal empty];
-//}
-//
-//#endif
-
 + (void)sendDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters{
     
     id <DFINetworkServiceInterface> interface = nil;
@@ -136,27 +116,5 @@
                                  }];
     }
 }
-
-//#ifdef REACTIVECOCOA_SUPPORT
-//
-//+ (RACSignal *)signalSendDataByName:(NSString *)name
-//                         Paramaters:(NSDictionary *)paramaters {
-//    
-//    id <DFINetworkServiceInterface> interface = nil;
-//    
-//    id networkService = [[NSClassFromString(name) alloc] init];
-//    
-//    interface = networkService;
-//    
-//    if (interface &&
-//        [interface respondsToSelector:@selector(signalSendDataWithURLParamaters:)]) {
-//        
-//        return [interface signalSendDataWithURLParamaters:paramaters];
-//    }
-//    
-//    return [RACSignal empty];
-//}
-//
-//#endif
 
 @end

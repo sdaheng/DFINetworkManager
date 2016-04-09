@@ -1,6 +1,6 @@
 //
 //  DFINetworkReachablityManager.m
-//  DFInfrastructure
+//  DFINetworkManager
 //
 //  Created by SDH on 4/13/15.
 //  Copyright (c) 2015 com.dazhongcun. All rights reserved.

@@ -1,18 +1,15 @@
 //
 //  NetworkServiceInterface.h
-//  PropertyHousekeeper
+//  DFINetworkManager
 //
 //  Created by SDH on 14/6/20.
-//  Copyright (c) 2014年 包光晖. All rights reserved.
+//  Copyright (c) 2014年 SDH. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+
 #import "DFINetworkManagerTypes.h"
 #import "DFINetworkServiceAPIRequestDelegate.h"
-
-//#if PROJECT_SUPPORT_REACTIVECOCOA
-//#import <ReactiveCocoa/ReactiveCocoa.h>
-//#endif
 
 @protocol DFINetworkServiceInterface <NSObject>
 

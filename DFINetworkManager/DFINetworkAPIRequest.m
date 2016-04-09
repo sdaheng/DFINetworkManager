@@ -1,9 +1,9 @@
 //
 //  NetworkAPIRequest.m
-//  PropertyHousekeeper
+//  DFINetworkManager
 //
-//  Created by 包光晖 on 14-9-25.
-//  Copyright (c) 2014年 包光晖. All rights reserved.
+//  Created by SDH on 14-9-25.
+//  Copyright (c) 2014年 SDH. All rights reserved.
 //
 
 #import "DFINetworkService.h"
@@ -174,8 +174,8 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(successCallback)success
-                 fail:(failCallback)fail {
+              success:(successBlock)success
+                 fail:(failBlock)fail {
     
     [DFINetworkHTTPRequestService sendDataToURL:url
                                      paramaters:paramaters
@@ -188,8 +188,8 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
 + (void)uploadDataToURL:(NSString *)URL
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successCallback)successBlock
-              failBlock:(failCallback)failBlock {
+           successBlock:(successBlock)successBlock
+              failBlock:(failBlock)failBlock {
     
     [DFINetworkHTTPRequestService uploadDataToURL:URL
                                          withData:data
@@ -201,8 +201,8 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
 + (void)downloadDataWithURL:(NSString *)URL
                 destination:(NSString *)filePath
               progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-               successBlock:(successCallback)successBlock
-                  failBlock:(failCallback)failBlock {
+               successBlock:(successBlock)successBlock
+                  failBlock:(failBlock)failBlock {
     
     [DFINetworkHTTPRequestService downloadWithURL:URL
                               destinationFilePath:filePath

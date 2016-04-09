@@ -1,8 +1,8 @@
 //
 //  DFINetworkServiceAPIRequestDelegate.h
-//  DFInfrastructure
+//  DFINetworkManager
 //
-//  Created by dzc002 on 15/2/10.
+//  Created by SDH on 15/2/10.
 //  Copyright (c) 2015年 com.dazhongcun. All rights reserved.
 //
 

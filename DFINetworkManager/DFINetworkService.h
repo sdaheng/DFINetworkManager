@@ -1,18 +1,15 @@
 //
 //  NetworkService.h
-//  PropertyHousekeeper
+//  DFINetworkManager
 //
 //  Created by SDH on 14/6/20.
-//  Copyright (c) 2014年 包光晖. All rights reserved.
+//  Copyright (c) 2014年 SDH. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+
 #import "DFINetworkServiceAPIRequestDelegate.h"
 #import "DFINetworkManagerTypes.h"
-
-//#if PROJECT_SUPPORT_REACTIVECOCOA && __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
-//#import <ReactiveCocoa/ReactiveCocoa.h>
-//#endif
 
 @interface DFINetworkService : NSObject
 
@@ -47,20 +44,6 @@
              Paramaters:(NSDictionary *)paramaters
             resultBlock:(resultBlock)result;
 
-//#ifdef REACTIVECOCOA_SUPPORT
-//
-///**
-// *  使用RACSignal的GET请求
-// *
-// *  @param name       具体的网络请求类的类名.
-// *  @param paramaters 网络请求参数.
-// *
-// *  @return 带有返回结果的signal
-// */
-//+ (RACSignal *)signalFetchDataByName:(NSString *)name
-//                          Paramaters:(NSDictionary *)paramaters;
-//#endif
-
 /**
  *@brief 通过不同的类名向服务器提交不同的数据（POST）, 获取的结果由通知返回
  *@param 网络请求接口的类名
@@ -91,19 +74,5 @@
 + (void)sendDataByName:(NSString *)name
             Paramaters:(NSDictionary *)paramaters
            resultBlock:(resultBlock)result;
-
-//#ifdef REACTIVECOCOA_SUPPORT
-//
-///**
-// *  使用RACSignal的POST请求
-// *
-// *  @param name       具体的网络请求类的类名.
-// *  @param paramaters 网络请求参数.
-// *
-// *  @return 带有返回结果的signal
-// */
-//+ (RACSignal *)signalSendDataByName:(NSString *)name
-//                         Paramaters:(NSDictionary *)paramaters;
-//#endif
 
 @end

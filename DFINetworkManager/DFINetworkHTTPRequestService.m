@@ -126,8 +126,8 @@
 
 + (void)sendDataToURL:(NSString *)url
            paramaters:(NSDictionary *)paramaters
-              success:(successCallback)success
-                 fail:(failCallback)fail {
+              success:(successBlock)success
+                 fail:(failBlock)fail {
     @try {
         
         [[[self sharedInstance] HTTPSessionManager]
@@ -171,8 +171,8 @@
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(successCallback)success
-                 fail:(failCallback)fail {
+              success:(successBlock)success
+                 fail:(failBlock)fail {
     
     @try {
         [[[self sharedInstance] HTTPSessionManager]
@@ -229,8 +229,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
 + (void)headDataToURL:(NSString *)URL
            paramaters:(NSDictionary *)paramaters
-              success:(successCallback)success
-                 fail:(failCallback)fail {
+              success:(successBlock)success
+                 fail:(failBlock)fail {
     
     @try {
         
@@ -258,8 +258,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
 + (void)deleteDataToURL:(NSString *)URL
              paramaters:(NSDictionary *)paramters
-                success:(successCallback)success
-                   fail:(failCallback)fail {
+                success:(successBlock)success
+                   fail:(failBlock)fail {
     
     @try {
         
@@ -289,8 +289,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 + (void)uploadDataToURL:(NSString *)URL
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successCallback)successBlock
-              failBlock:(failCallback)failBlock {
+           successBlock:(successBlock)successBlock
+              failBlock:(failBlock)failBlock {
     
     @try {
         
@@ -332,8 +332,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 + (void)downloadWithURL:(NSString *)URLString
     destinationFilePath:(NSString *)filePath
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successCallback)successBlock
-              failBlock:(failCallback)failBlock {
+           successBlock:(successBlock)successBlock
+              failBlock:(failBlock)failBlock {
    
     @try {
         

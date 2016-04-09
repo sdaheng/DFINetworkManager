@@ -1,9 +1,9 @@
 //
 //  Services.h
-//  PropertyHousekeeper
+//  DFINetworkManager
 //
 //  Created by SDH on 14-5-20.
-//  Copyright (c) 2014年 包光晖. All rights reserved.
+//  Copyright (c) 2014年 SDH. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -44,15 +44,15 @@
  */
 + (void)sendDataToURL:(NSString *)url
            paramaters:(NSDictionary *)paramaters
-              success:(successCallback)success
-                 fail:(failCallback)fail;
+              success:(successBlock)success
+                 fail:(failBlock)fail;
 
 + (void)sendDataToURL:(NSString *)url
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(successCallback)success
-                 fail:(failCallback)fail;
+              success:(successBlock)success
+                 fail:(failBlock)fail;
 
 /**
  *  Get HTTP HEAD from URL
@@ -64,8 +64,8 @@
  */
 + (void)headDataToURL:(NSString *)URL
            paramaters:(NSDictionary *)paramaters
-              success:(successCallback)success
-                 fail:(failCallback)fail;
+              success:(successBlock)success
+                 fail:(failBlock)fail;
 
 /**
  *  Upload data to URL
@@ -79,8 +79,8 @@
 + (void)uploadDataToURL:(NSString *)URL
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successCallback)successBlock
-              failBlock:(failCallback)failBlock;
+           successBlock:(successBlock)successBlock
+              failBlock:(failBlock)failBlock;
 
 /**
  *  Download a file from URL
@@ -94,7 +94,7 @@
 + (void)downloadWithURL:(NSString *)URLString
     destinationFilePath:(NSString *)filePath
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successCallback)successBlock
-              failBlock:(failCallback)failBlock;
+           successBlock:(successBlock)successBlock
+              failBlock:(failBlock)failBlock;
 
 @end
