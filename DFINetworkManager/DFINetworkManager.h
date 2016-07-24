@@ -25,7 +25,7 @@ FOUNDATION_EXPORT const unsigned char DFINetworkManagerVersionString[];
 #import "DFINetworkManagerDefines.h"
 #import "DFINetworkNotificationNames.h"
 
-#if PROJECT_SUPPORT_REACTIVECOCOA && __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
+#if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 #import "DFINetworkService+RACSignalSupport.h"
 #import "DFINetworkServiceRACSignalSupportInterface.h"
 #endif

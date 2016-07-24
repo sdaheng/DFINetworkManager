@@ -1,22 +1,44 @@
 //
 //  DFINetworkManagerDefines.h
-//  DFINetworkManager
+//  DFInfrastructure
 //
 //  Created by SDH on 8/13/15.
 //  Copyright (c) 2015 com.dazhongcun. All rights reserved.
 //
 
-#ifndef DFINetworkManager_DFINetworkManagerDefines_h
-#define DFINetworkManager_DFINetworkManagerDefines_h
+#ifndef DFInfrastructure_DFINetworkManagerDefines_h
+#define DFInfrastructure_DFINetworkManagerDefines_h
 
 #if __cplusplus
-#define DFI_NM_EXPORT extern "C"
+    #define DFI_NM_EXPORT extern "C"
 #else
-#define DFI_NM_EXPORT extern
+    #define DFI_NM_EXPORT extern
 #endif
 
-//仅在调试时使用，发布时需删除下面两行代码
+//Only use for debug
 #define DFINETWORK_ALLOW_INVALID_CERTFICATE YES
 #define DFINETWORK_ALLOW_VALIDATE_DOMAIN    NO
+
+#if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
+    #define SUBSCRIBER_DATA_HANDLER(subscriber, success, result) \
+            SUBSCRIBER_DATA_HANDLER_4(subscriber, success, result, @"")
+
+    #define SUBSCRIBER_DATA_HANDLER_4(subscriber, success, result, errorDescription) \
+            do {               \
+                if (success) { \
+                    NSLog(@"result %@", result);   \
+                    [subscriber sendNext:result];  \
+                    [subscriber sendCompleted];    \
+                } else {                           \
+                    NSError *error = [NSError errorWithDomain:@"NetworkRequest Error"     \
+                                                         code:1                           \
+                                                     userInfo:@{@"reason" : errorDescription}]; \
+                                                                                                \
+                    [subscriber sendError:error]; \
+                    [subscriber sendCompleted];   \
+                }    \
+            }while(0)\
+
+#endif
 
 #endif

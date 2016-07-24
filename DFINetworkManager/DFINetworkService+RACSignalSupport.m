@@ -8,15 +8,11 @@
 
 #import "DFINetworkService+RACSignalSupport.h"
 
-#ifdef PROJECT_SUPPORT_REACTIVECOCOA
-
 #import "DFINetworkServiceRACSignalSupportInterface.h"
-
-#endif
 
 @implementation DFINetworkService (RACSignalSupport)
 
-#ifdef REACTIVECOCOA_SUPPORT
+#if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 
 + (RACSignal *)signalFetchDataByName:(NSString *)name
                           Paramaters:(NSDictionary *)paramaters{

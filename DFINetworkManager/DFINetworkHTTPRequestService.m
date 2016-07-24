@@ -8,10 +8,10 @@
 
 #import "DFINetworkHTTPRequestService.h"
 #import "DFIErrorHandler.h"
-#import "AFNetworking.h"
 #import "DFINetworkManagerDefines.h"
+#import <AFNetworking/AFNetworking.h>
 
-//仅在调试时使用，正式代码需删除下面的宏
+//Only use for debug
 #ifndef DFINETWORK_ALLOW_INVALID_CERTFICATE 
 #define DFINETWORK_ALLOW_INVALID_CERTFICATE NO
 #endif
@@ -71,219 +71,164 @@
     return networkRequestService;
 }
 
-+ (void)fetchDataFromURL:(NSString *)url
++ (void)fetchDataFromURL:(NSString *)URLString
             successBlock:(void (^)(id result))success
                failBlock:(void (^)(NSError *error))fail {
     
-    [self fetchDataFromURL:url
+    [self fetchDataFromURL:URLString
                 paramaters:nil
                successBlock:success
                  failBlock:fail];
 }
 
-+ (void)fetchDataFromURL:(NSString *)url
++ (void)fetchDataFromURL:(NSString *)URLString
               paramaters:(NSDictionary *)paramaters
             successBlock:(void (^)(id result))success
                failBlock:(void (^)(NSError *error))fail {
 
-    @try {
-        [[[self sharedInstance] HTTPSessionManager]
-         GET:url
-          parameters:paramaters
-            progress:^(NSProgress * _Nonnull downloadProgress) {
-                
-            }
-             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                 NSError *error = nil;
-                 
-                 id parsedJSONObject =
-                 [NSJSONSerialization JSONObjectWithData:responseObject
-                                                 options:NSJSONReadingMutableLeaves |
-                                                         NSJSONReadingAllowFragments
-                                                   error:&error];
-                 
-                 if (error) {
-                     NSLog(@"DFINetworkHTTPRequestService (GET) JSON error: %@", [error description]);
-                 }
-                 
-                 if (success) {
-                     success(parsedJSONObject);
-                 }
-             }
-             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                 
-                 if (fail) {
-                     fail(error);
-                 }
-             }];
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-    }
+    [[[self sharedInstance] HTTPSessionManager]
+     GET:URLString parameters:paramaters progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         NSError *error = nil;
+         
+         id parsedJSONObject =
+         [NSJSONSerialization JSONObjectWithData:responseObject
+                                         options:NSJSONReadingMutableLeaves |
+                                                 NSJSONReadingAllowFragments
+                                           error:&error];
+         
+         if (error) {
+             NSLog(@"DFINetworkHTTPRequestService (GET) JSON error: %@", [error description]);
+         }
+         
+         if (success) {
+             success(parsedJSONObject);
+         }
+     }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         
+         if (fail) {
+             fail(error);
+         }
+     }];
 }
 
-+ (void)sendDataToURL:(NSString *)url
++ (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
               success:(successBlock)success
                  fail:(failBlock)fail {
-    @try {
-        
-        [[[self sharedInstance] HTTPSessionManager]
-         POST:url
-           parameters:paramaters
-             progress:^(NSProgress * _Nonnull uploadProgress) {
-                 
-             }
-              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                  NSError *error = nil;
-                  
-                  id parsedJSONObject =
-                  [NSJSONSerialization JSONObjectWithData:responseObject
-                                                  options:NSJSONReadingMutableLeaves |
-                                                          NSJSONReadingAllowFragments
-                                                    error:&error];
-                  
-                  if (error) {
-                      NSLog(@"DFINetworkHTTPRequestService (POST) JSON error: %@", [error description]);
-                  }
-                  
-                  if (success){
-                      success(parsedJSONObject);
-                  }
-              }
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                  if (fail) {
-                      fail(error);
-                  }
-              }];
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
+    [[[self sharedInstance] HTTPSessionManager]
+     POST:URLString parameters:paramaters progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+          NSError *error = nil;
+          
+          id parsedJSONObject =
+          [NSJSONSerialization JSONObjectWithData:responseObject
+                                          options:NSJSONReadingMutableLeaves |
+                                                  NSJSONReadingAllowFragments
+                                            error:&error];
+          
+          if (error) {
+              NSLog(@"DFINetworkHTTPRequestService (POST) JSON error: %@", [error description]);
+          }
+          
+          if (success){
+              success(parsedJSONObject);
+          }
+      }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+          if (fail) {
+              fail(error);
+          }
+     }];
 }
 
-+ (void)sendDataToURL:(NSString *)url
++ (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
               success:(successBlock)success
                  fail:(failBlock)fail {
     
-    @try {
-        [[[self sharedInstance] HTTPSessionManager]
-         POST:url
-           parameters:paramaters
-constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-    [bodys enumerateObjectsUsingBlock:^(NSData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if (idx > bodyPartNames.count) {
-            *stop = YES;
-        }
-        [formData appendPartWithFormData:obj
-                                    name:bodyPartNames[idx]];
-    }];
-}
-             progress:^(NSProgress * _Nonnull uploadProgress) {
-                 
-             }
-              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                  NSError *error = nil;
-                  
-                  id parsedJSONObject =
-                  [NSJSONSerialization JSONObjectWithData:responseObject
-                                                  options:NSJSONReadingMutableLeaves |
-                                                          NSJSONReadingAllowFragments
-                                                    error:&error];
-                  
-                  if (error) {
-                      NSLog(@"DFINetworkHTTPRequestService (POST) JSON error: %@", [error description]);
-                      
-                      if (fail) {
-                          fail(error);
-                      }
-                  }
-                  
-                  if (success){
-                      success(parsedJSONObject);
-                  }
+    [[[self sharedInstance] HTTPSessionManager]
+     POST:URLString
+     parameters:paramaters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+         [bodys enumerateObjectsUsingBlock:^(NSData * _Nonnull obj,
+                                             NSUInteger idx,
+                                             BOOL * _Nonnull stop) {
+    
+            if (idx > bodyPartNames.count) {
+                *stop = YES;
+            }
+            [formData appendPartWithFormData:obj
+                                        name:bodyPartNames[idx]];
+         }];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {}
+       success:^(NSURLSessionDataTask * _Nonnull task,
+           id  _Nullable responseObject) {
+          NSError *error = nil;
+          
+          id parsedJSONObject =
+          [NSJSONSerialization JSONObjectWithData:responseObject
+                                          options:NSJSONReadingMutableLeaves |
+                                                  NSJSONReadingAllowFragments
+                                            error:&error];
+          
+          if (error) {
+              NSLog(@"DFINetworkHTTPRequestService (POST) JSON error: %@", [error description]);
+              
+              if (fail) {
+                  fail(error);
               }
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                  if (fail) {
-                      fail(error);
-                  }
-              }];
-
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
+          }
+          
+          if (success){
+              success(parsedJSONObject);
+          }
+       }
+        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (fail) {
+                fail(error);
+            }
+      }];
 }
 
 + (void)headDataToURL:(NSString *)URL
            paramaters:(NSDictionary *)paramaters
               success:(successBlock)success
                  fail:(failBlock)fail {
-    
-    @try {
-        
-        [[[self sharedInstance] HTTPSessionManager]
-         HEAD:URL
-           parameters:paramaters
-              success:^(NSURLSessionDataTask * _Nonnull task) {
-                  if (success) {
-                      success(task.response);
-                  }
-              }
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                  if (fail) {
-                      fail(error);
-                  }
-              }];
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
+    [[[self sharedInstance] HTTPSessionManager]
+     HEAD:URL parameters:paramaters success:^(NSURLSessionDataTask * _Nonnull task) {
+          if (success) {
+              success(task.response);
+          }
+      }
+      failure:^(NSURLSessionDataTask * _Nullable task,
+                NSError * _Nonnull error) {
+          if (fail) {
+              fail(error);
+          }
+      }];
 }
 
 + (void)deleteDataToURL:(NSString *)URL
              paramaters:(NSDictionary *)paramters
                 success:(successBlock)success
                    fail:(failBlock)fail {
-    
-    @try {
-        
-        [[[self sharedInstance] HTTPSessionManager]
-         DELETE:URL
-             parameters:paramters
-                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                    
-                    if (success) {
-                        success(responseObject);
-                    }
-                }
-                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                    if (fail) {
-                        fail(error);
-                    }
-                }];
+
+    [[[self sharedInstance] HTTPSessionManager]
+     DELETE:URL parameters:paramters success:^(NSURLSessionDataTask * _Nonnull task,
+                                               id  _Nullable responseObject) {
+                
+        if (success) {
+            success(responseObject);
+        }
     }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
+    failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (fail) {
+            fail(error);
+        }
+    }];
 }
 
 + (void)uploadDataToURL:(NSString *)URL
@@ -291,42 +236,33 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
            successBlock:(successBlock)successBlock
               failBlock:(failBlock)failBlock {
+
+    NSURLSessionUploadTask *sessionUploadTask =
+    [[[self sharedInstance] URLSessionManager]
+     uploadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URL]]
+                  fromData:data
+                  progress:^(NSProgress * _Nonnull uploadProgress) {
+                      if (progressBlock) {
+                          progressBlock(uploadProgress.fractionCompleted,
+                                        uploadProgress.totalUnitCount);
+                      }
+                  }
+         completionHandler:^(NSURLResponse * _Nonnull response,
+                             id  _Nullable responseObject,
+                             NSError * _Nullable error) {
+             
+             if (!error) {
+                 if (successBlock) {
+                     successBlock(responseObject);
+                 }
+             }else {
+                 if (failBlock) {
+                     failBlock(error);
+                 }
+             }
+         }];
     
-    @try {
-        
-        NSURLSessionUploadTask *sessionUploadTask =
-        [[[self sharedInstance] URLSessionManager]
-         uploadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URL]]
-                              fromData:data
-                              progress:^(NSProgress * _Nonnull uploadProgress) {
-                                  if (progressBlock) {
-                                      progressBlock(uploadProgress.fractionCompleted,
-                                                    uploadProgress.totalUnitCount);
-                                  }
-                              }
-                     completionHandler:^(NSURLResponse * _Nonnull response,
-                                         id  _Nullable responseObject,
-                                         NSError * _Nullable error) {
-                         
-                         if (!error) {
-                             if (successBlock) {
-                                 successBlock(responseObject);
-                             }
-                         }else {
-                             if (failBlock) {
-                                 failBlock(error);
-                             }
-                         }
-                     }];
-        
-        [sessionUploadTask resume];
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
+    [sessionUploadTask resume];
 }
 
 + (void)downloadWithURL:(NSString *)URLString
@@ -334,52 +270,43 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
            successBlock:(successBlock)successBlock
               failBlock:(failBlock)failBlock {
-   
-    @try {
+
+    NSURLSessionDownloadTask *sessionDownloadTask =
+    [[[self sharedInstance] URLSessionManager]
+     downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLString]]
+     progress:^(NSProgress * _Nonnull downloadProgress) {
+           if (progressBlock) {
+               progressBlock(downloadProgress.fractionCompleted,
+                             downloadProgress.totalUnitCount);
+           }
+       }
+    destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath,
+                                  NSURLResponse * _Nonnull response) {
         
-        NSURLSessionDownloadTask *sessionDownloadTask =
-        [[[self sharedInstance] URLSessionManager]
-         downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLString]]
-                                       progress:^(NSProgress * _Nonnull downloadProgress) {
-                                           
-                                           if (progressBlock) {
-                                               progressBlock(downloadProgress.fractionCompleted,
-                                                             downloadProgress.totalUnitCount);
-                                           }
-                                       }
-                                    destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath,
-                                                                  NSURLResponse * _Nonnull response) {
-                                        
-                                        if ([filePath hasPrefix:@"file://"]) {
-                                            return [NSURL URLWithString:filePath];
-                                        }
-                                        NSURL *destinationURL = [NSURL URLWithString:filePath
-                                                                       relativeToURL:[[[NSFileManager defaultManager]
-                                                                                       URLsForDirectory:NSDocumentDirectory
-                                                                                       inDomains:NSUserDomainMask] lastObject]];
-                                        
-                                        return destinationURL;
-                                    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-                                        if (!error) {
-                                            if (successBlock) {
-                                                successBlock(filePath);
-                                            }
-                                        }else {
-                                            if (failBlock) {
-                                                failBlock(error);
-                                            }
-                                        }
-                                    }];
+        if ([filePath hasPrefix:@"file://"]) {
+            return [NSURL URLWithString:filePath];
+        }
+        NSURL *destinationURL = [NSURL URLWithString:filePath
+                                       relativeToURL:[[[NSFileManager defaultManager]
+                                                       URLsForDirectory:NSDocumentDirectory
+                                                       inDomains:NSUserDomainMask] lastObject]];
         
-        
-        [sessionDownloadTask resume];
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
+        return destinationURL;
+    } completionHandler:^(NSURLResponse * _Nonnull response,
+                          NSURL * _Nullable filePath,
+                          NSError * _Nullable error) {
+        if (!error) {
+            if (successBlock) {
+                successBlock(filePath);
+            }
+        }else {
+            if (failBlock) {
+                failBlock(error);
+            }
+        }
+    }];
+    
+    [sessionDownloadTask resume];
 }
 
 @end

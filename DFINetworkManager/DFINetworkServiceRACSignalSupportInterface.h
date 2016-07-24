@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#if PROJECT_SUPPORT_REACTIVECOCOA && __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
+#if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #endif
 
 @protocol DFINetworkServiceRACSignalSupportInterface <NSObject>
 
-#ifdef PROJECT_SUPPORT_REACTIVECOCOA
+#if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 
 - (RACSignal *)signalFetchDataWithURLParamaters:(NSDictionary *)paramaters;
 

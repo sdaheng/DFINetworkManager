@@ -18,7 +18,7 @@
  *  @param success 成功后调用的block, 并返回获取的结果
  *  @param fail    失败调用的block
  */
-+ (void)fetchDataFromURL:(NSString *)url
++ (void)fetchDataFromURL:(NSString *)URLString
             successBlock:(void (^)(id result))success
                failBlock:(void (^)(NSError *error))fail;
 
@@ -30,7 +30,7 @@
  *  @param success    成功后调用的block, 并返回获取的结果
  *  @param fail       失败调用的block
  */
-+ (void)fetchDataFromURL:(NSString *)url
++ (void)fetchDataFromURL:(NSString *)URLString
               paramaters:(NSDictionary *)paramaters
             successBlock:(void (^)(id result))success
                failBlock:(void (^)(NSError *error))fail;
@@ -42,12 +42,12 @@
  *@param 成功后的block
  *@param 失败后的block
  */
-+ (void)sendDataToURL:(NSString *)url
++ (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
               success:(successBlock)success
                  fail:(failBlock)fail;
 
-+ (void)sendDataToURL:(NSString *)url
++ (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
@@ -62,7 +62,7 @@
  *  @param success    success block
  *  @param fail       fail block
  */
-+ (void)headDataToURL:(NSString *)URL
++ (void)headDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
               success:(successBlock)success
                  fail:(failBlock)fail;
@@ -76,7 +76,7 @@
  *  @param successBlock  if data upload success, successBlock will be invoked.
  *  @param failBlock     if error occurred, failBlock will be invoked.
  */
-+ (void)uploadDataToURL:(NSString *)URL
++ (void)uploadDataToURL:(NSString *)URLString
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
            successBlock:(successBlock)successBlock
