@@ -42,7 +42,7 @@
  */
 + (void)fetchDataByName:(NSString *)name
              Paramaters:(NSDictionary *)paramaters
-            resultBlock:(resultBlock)result;
+            resultBlock:(DFIAPIRequestResultBlock)result;
 
 /**
  *@brief 通过不同的类名向服务器提交不同的数据（POST）, 获取的结果由通知返回
@@ -73,6 +73,20 @@
  */
 + (void)sendDataByName:(NSString *)name
             Paramaters:(NSDictionary *)paramaters
-           resultBlock:(resultBlock)result;
+           resultBlock:(DFIAPIRequestResultBlock)result;
+
++ (void)cancelHTTPRequest;
++ (void)cancelDataRequest;
+
+@end
+
+@interface DFINetworkService (Cache)
+
++ (NSUInteger)currentURLCacheMemoryUsage;
++ (NSUInteger)currentURLCacheDiskUsage;
+
++ (void)setupCacheWithMemoryCapacity:(NSUInteger)memoryCapacity
+                        diskCapacity:(NSUInteger)diskCapacity;
++ (void)clearCache;
 
 @end

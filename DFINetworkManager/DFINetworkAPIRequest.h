@@ -16,7 +16,7 @@
  */
 DFI_NM_EXPORT NSString * const kDFINetworkRequestResultKey;
 
-typedef void(^resultBlock)(id ret);
+typedef void(^DFIAPIRequestResultBlock)(id ret);
 
 typedef enum : NSUInteger {
     DFINetworkManagerHTTPGetRequest,
@@ -34,7 +34,7 @@ typedef enum : NSUInteger {
  *  @param requestType      Request method (support GET, POST, HEAD)
  *  @param notificationName Request result notification name
  */
-+ (void)requestWithURL:(NSString *)URL
++ (void)requestWithURL:(NSString *)URLString
             paramaters:(NSDictionary *)paramaters
            requestType:(DFINetworkManagerRequestType)requestType
       notificationName:(NSString *)notificationName;
@@ -47,7 +47,7 @@ typedef enum : NSUInteger {
  *  @param requestType Request method (support GET, POST, HEAD)
  *  @param delegate    Request result delegate
  */
-+ (void)requestWithURL:(NSString *)URL
++ (void)requestWithURL:(NSString *)URLString
             paramaters:(NSDictionary *)paramaters
            requestType:(DFINetworkManagerRequestType)requestType
               delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate;
@@ -60,17 +60,17 @@ typedef enum : NSUInteger {
  *  @param requestType Request method (support GET, POST, HEAD)
  *  @param resultBlock Request result block
  */
-+ (void)requestWithURL:(NSString *)URL
++ (void)requestWithURL:(NSString *)URLString
             paramaters:(NSDictionary *)paramaters
            requestType:(DFINetworkManagerRequestType)requestType
-           resultBlock:(resultBlock)resultBlock;
+           resultBlock:(DFIAPIRequestResultBlock)resultBlock;
 
-+ (void)sendDataToURL:(NSString *)URL
++ (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(successBlock)success
-                 fail:(failBlock)fail;
+              success:(DFISuccessBlock)success
+                 fail:(DFIFailBlock)fail;
 
 /**
  *  Upload binary data to URL
@@ -81,11 +81,11 @@ typedef enum : NSUInteger {
  *  @param successBlock  If upload data success, invoke this block
  *  @param failBlock     If upload data fail, invoke this block
  */
-+ (void)uploadDataToURL:(NSString *)URL
++ (void)uploadDataToURL:(NSString *)URLString
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successBlock)successBlock
-              failBlock:(failBlock)failBlock;
+           successBlock:(DFISuccessBlock)successBlock
+              failBlock:(DFIFailBlock)failBlock;
 
 /**
  *  Download something from URL
@@ -96,10 +96,13 @@ typedef enum : NSUInteger {
  *  @param successBlock  If download file success, invoke this block
  *  @param failBlock     If download file fail, invoke this block
  */
-+ (void)downloadDataWithURL:(NSString *)URL
++ (void)downloadDataWithURL:(NSString *)URLString
                 destination:(NSString *)filePath
               progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-               successBlock:(successBlock)successBlock
-                  failBlock:(failBlock)failBlock;
+               successBlock:(DFISuccessBlock)successBlock
+                  failBlock:(DFIFailBlock)failBlock;
+
++ (void)cancelDataRequest;
++ (void)cancelHTTPRequest;
 
 @end

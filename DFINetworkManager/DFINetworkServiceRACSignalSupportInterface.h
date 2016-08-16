@@ -10,16 +10,12 @@
 
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#endif
 
 @protocol DFINetworkServiceRACSignalSupportInterface <NSObject>
-
-#if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 
 - (RACSignal *)signalFetchDataWithURLParamaters:(NSDictionary *)paramaters;
 
 - (RACSignal *)signalSendDataWithURLParamaters:(NSDictionary *)paramaters;
 
-#endif
-
 @end
+#endif

@@ -14,17 +14,6 @@
 /**
  *  从服务端获取数据(GET)
  *
- *  @param url     URL, 参数直接使用&拼接
- *  @param success 成功后调用的block, 并返回获取的结果
- *  @param fail    失败调用的block
- */
-+ (void)fetchDataFromURL:(NSString *)URLString
-            successBlock:(void (^)(id result))success
-               failBlock:(void (^)(NSError *error))fail;
-
-/**
- *  从服务端获取数据(GET)
- *
  *  @param url        URL
  *  @param paramaters HTTP Get 的参数
  *  @param success    成功后调用的block, 并返回获取的结果
@@ -44,15 +33,15 @@
  */
 + (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
-              success:(successBlock)success
-                 fail:(failBlock)fail;
+              success:(DFISuccessBlock)success
+                 fail:(DFIFailBlock)fail;
 
 + (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(successBlock)success
-                 fail:(failBlock)fail;
+              success:(DFISuccessBlock)success
+                 fail:(DFIFailBlock)fail;
 
 /**
  *  Get HTTP HEAD from URL
@@ -64,8 +53,8 @@
  */
 + (void)headDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
-              success:(successBlock)success
-                 fail:(failBlock)fail;
+              success:(DFISuccessBlock)success
+                 fail:(DFIFailBlock)fail;
 
 /**
  *  Upload data to URL
@@ -79,8 +68,8 @@
 + (void)uploadDataToURL:(NSString *)URLString
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successBlock)successBlock
-              failBlock:(failBlock)failBlock;
+           successBlock:(DFISuccessBlock)successBlock
+              failBlock:(DFIFailBlock)failBlock;
 
 /**
  *  Download a file from URL
@@ -94,7 +83,10 @@
 + (void)downloadWithURL:(NSString *)URLString
     destinationFilePath:(NSString *)filePath
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successBlock)successBlock
-              failBlock:(failBlock)failBlock;
+           successBlock:(DFISuccessBlock)successBlock
+              failBlock:(DFIFailBlock)failBlock;
+
++ (void)cancelHTTPRequest;
++ (void)cancelDataRequest;
 
 @end

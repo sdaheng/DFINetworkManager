@@ -38,7 +38,7 @@
  *@return void
  */
 - (void)fetchDataWithURLParamaters:(NSDictionary *)paramaters
-                       resultBlock:(resultBlock)resultBlock;
+                       resultBlock:(DFIAPIRequestResultBlock)resultBlock;
 
 /**
  *@brief Post data with paramater, result is returned by notification
@@ -63,6 +63,6 @@
  *@return void
  */
 - (void)sendDataWithURLParamaters:(NSDictionary *)paramaters
-                      resultBlock:(resultBlock)resultBlock;
+                      resultBlock:(DFIAPIRequestResultBlock)resultBlock;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "DFINetworkService.h"
-#import "DFINetworkServiceInterface.h"
 #import "DFINetworkHTTPRequestService.h"
 #import "DFINetworkAPIRequest.h"
 
@@ -21,14 +20,18 @@
 
 NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
 
+@interface DFINetworkAPIRequest ()
+
+@end
+
 @implementation DFINetworkAPIRequest
 
-+ (void)requestWithURL:(NSString *)url
++ (void)requestWithURL:(NSString *)URLString
             paramaters:(NSDictionary *)paramaters
            requestType:(DFINetworkManagerRequestType)requestType
-      notificationName:(NSString *)notificationName{
+      notificationName:(NSString *)notificationName {
     
-    [self requestWithURL:url
+    [self requestWithURL:URLString
               paramaters:paramaters
              requestType:requestType
         notificationName:notificationName
@@ -36,12 +39,12 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
              resultBlock:nil];
 }
 
-+ (void)requestWithURL:(NSString *)url
++ (void)requestWithURL:(NSString *)URLString
             paramaters:(NSDictionary *)paramaters
            requestType:(DFINetworkManagerRequestType)requestType
-              delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate{
+              delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate {
     
-    [self requestWithURL:url
+    [self requestWithURL:URLString
               paramaters:paramaters
              requestType:requestType
         notificationName:nil
@@ -49,12 +52,12 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
              resultBlock:nil];
 }
 
-+ (void)requestWithURL:(NSString *)url
++ (void)requestWithURL:(NSString *)URLString
             paramaters:(NSDictionary *)paramaters
            requestType:(DFINetworkManagerRequestType)requestType
-           resultBlock:(resultBlock)resultBlock{
+           resultBlock:(DFIAPIRequestResultBlock)resultBlock {
     
-    [self requestWithURL:url
+    [self requestWithURL:URLString
               paramaters:paramaters
              requestType:requestType
         notificationName:nil
@@ -62,62 +65,52 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
              resultBlock:resultBlock];
 }
 
-+ (void)requestWithURL:(NSString *)url
++ (void)requestWithURL:(NSString *)URLString
             paramaters:(NSDictionary *)paramaters
            requestType:(DFINetworkManagerRequestType)requestType
       notificationName:(NSString *)notificationName
               delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate
-           resultBlock:(resultBlock)resultBlock{
+           resultBlock:(DFIAPIRequestResultBlock)resultBlock {
     
-    @try {
-        switch (requestType) {
-            case DFINetworkManagerHTTPGetRequest:
-            {
-                [self GETRequestWithUrl:url
-                            resultBlock:resultBlock
-                               delegate:delegate
-                       notificationName:notificationName
-                             paramaters:paramaters];
-                break;
-            }
-            case DFINetworkManagerHTTPPostRequest:
-            {
-                [self POSTRequestWithURL:url
-                              paramaters:paramaters
-                                delegate:delegate
-                        notificationName:notificationName
-                             resultBlock:resultBlock];
-                break;
-            }
-            case DFINetworkManagerHTTPHeadRequest:
-            {
-                [self HEADRequestWithUrl:url
-                             resultBlock:resultBlock
-                                delegate:delegate
-                        notificationName:notificationName
-                              paramaters:paramaters];
-            }
-            default:
-                break;
+    switch (requestType) {
+        case DFINetworkManagerHTTPGetRequest:
+        {
+            [self GETRequestWithUrl:URLString
+                        resultBlock:resultBlock
+                           delegate:delegate
+                   notificationName:notificationName
+                         paramaters:paramaters];
+            break;
         }
-        
-    }
-    @catch (NSException *exception) {
-        NSLog(@"exception name = %@ reason = %@", exception.name, exception.reason);
-    }
-    @finally {
-        
+        case DFINetworkManagerHTTPPostRequest:
+        {
+            [self POSTRequestWithURL:URLString
+                          paramaters:paramaters
+                            delegate:delegate
+                    notificationName:notificationName
+                         resultBlock:resultBlock];
+            break;
+        }
+        case DFINetworkManagerHTTPHeadRequest:
+        {
+            [self HEADRequestWithUrl:URLString
+                         resultBlock:resultBlock
+                            delegate:delegate
+                    notificationName:notificationName
+                          paramaters:paramaters];
+        }
+        default:
+            break;
     }
 }
 
-+ (void)GETRequestWithUrl:(NSString *)url
-              resultBlock:(resultBlock)resultBlock
++ (void)GETRequestWithUrl:(NSString *)URLString
+              resultBlock:(DFIAPIRequestResultBlock)resultBlock
                  delegate:(id)delegate
          notificationName:(NSString *)notificationName
-               paramaters:(NSDictionary *)paramaters
-{
+               paramaters:(NSDictionary *)paramaters {
     [DFINetworkHTTPRequestService
-     fetchDataFromURL:url
+     fetchDataFromURL:URLString
            paramaters:paramaters
          successBlock:^(id result) {
            [self handleRequestResult:resultBlock
@@ -130,14 +123,13 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
        }];
 }
 
-+ (void)POSTRequestWithURL:(NSString *)url
++ (void)POSTRequestWithURL:(NSString *)URLString
                 paramaters:(NSDictionary *)paramaters
                   delegate:(id)delegate
           notificationName:(NSString *)notificationName
-               resultBlock:(resultBlock)resultBlock
-{
+               resultBlock:(DFIAPIRequestResultBlock)resultBlock {
     [DFINetworkHTTPRequestService
-     sendDataToURL:url
+     sendDataToURL:URLString
         paramaters:paramaters
            success:^(id result) {
 
@@ -150,14 +142,14 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
     }];
 }
 
-+ (void)HEADRequestWithUrl:(NSString *)url
-              resultBlock:(resultBlock)resultBlock
++ (void)HEADRequestWithUrl:(NSString *)URLString
+              resultBlock:(DFIAPIRequestResultBlock)resultBlock
                  delegate:(id)delegate
          notificationName:(NSString *)notificationName
                paramaters:(NSDictionary *)paramaters {
     
     [DFINetworkHTTPRequestService
-     headDataToURL:url
+     headDataToURL:URLString
      paramaters:paramaters
      success:^(id result) {
          [self handleRequestResult:resultBlock
@@ -170,14 +162,14 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
      }];
 }
 
-+ (void)sendDataToURL:(NSString *)url
++ (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(successBlock)success
-                 fail:(failBlock)fail {
+              success:(DFISuccessBlock)success
+                 fail:(DFIFailBlock)fail {
     
-    [DFINetworkHTTPRequestService sendDataToURL:url
+    [DFINetworkHTTPRequestService sendDataToURL:URLString
                                      paramaters:paramaters
                                   constructBody:bodys
                                   bodyPartNames:bodyPartNames
@@ -185,33 +177,33 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
                                            fail:fail];
 }
 
-+ (void)uploadDataToURL:(NSString *)URL
++ (void)uploadDataToURL:(NSString *)URLString
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successBlock)successBlock
-              failBlock:(failBlock)failBlock {
+           successBlock:(DFISuccessBlock)successBlock
+              failBlock:(DFIFailBlock)failBlock {
     
-    [DFINetworkHTTPRequestService uploadDataToURL:URL
+    [DFINetworkHTTPRequestService uploadDataToURL:URLString
                                          withData:data
                                     progressBlock:progressBlock
                                      successBlock:successBlock
                                         failBlock:failBlock];
 }
 
-+ (void)downloadDataWithURL:(NSString *)URL
++ (void)downloadDataWithURL:(NSString *)URLString
                 destination:(NSString *)filePath
               progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-               successBlock:(successBlock)successBlock
-                  failBlock:(failBlock)failBlock {
+               successBlock:(DFISuccessBlock)successBlock
+                  failBlock:(DFIFailBlock)failBlock {
     
-    [DFINetworkHTTPRequestService downloadWithURL:URL
+    [DFINetworkHTTPRequestService downloadWithURL:URLString
                               destinationFilePath:filePath
                                     progressBlock:progressBlock
                                      successBlock:successBlock
                                         failBlock:failBlock];
 }
 
-+ (void)handleRequestResult:(resultBlock)resultBlock
++ (void)handleRequestResult:(DFIAPIRequestResultBlock)resultBlock
                      result:(id)result
                    delegate:(id)delegate
            notificationName:(NSString *)notificationName {
@@ -235,6 +227,14 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
             resultBlock(result);
         }
     }
+}
+
++ (void)cancelDataRequest {
+    [DFINetworkHTTPRequestService cancelDataRequest];
+}
+
++ (void)cancelHTTPRequest {
+    [DFINetworkHTTPRequestService cancelHTTPRequest];
 }
 
 + (void)handleRequestError:(NSError *)error {

@@ -8,6 +8,7 @@
 
 #import "DFINetworkService.h"
 #import "DFINetworkServiceInterface.h"
+#import "DFINetworkAPIRequest.h"
 
 @implementation DFINetworkService
 
@@ -44,7 +45,7 @@
 
 + (void)fetchDataByName:(NSString *)name
              Paramaters:(NSDictionary *)paramaters
-            resultBlock:(resultBlock)result{
+            resultBlock:(DFIAPIRequestResultBlock)result{
     
     id <DFINetworkServiceInterface> interface = nil;
     
@@ -97,7 +98,7 @@
 
 + (void)sendDataByName:(NSString *)name
             Paramaters:(NSDictionary *)paramaters
-           resultBlock:(resultBlock)result{
+           resultBlock:(DFIAPIRequestResultBlock)result{
     
     id <DFINetworkServiceInterface> interface = nil;
     
@@ -115,6 +116,36 @@
                                      }
                                  }];
     }
+}
+
++ (void)cancelHTTPRequest {
+    [DFINetworkAPIRequest cancelHTTPRequest];
+}
+
++ (void)cancelDataRequest {
+    [DFINetworkAPIRequest cancelDataRequest];
+}
+
+@end
+
+@implementation DFINetworkService (Cache)
+
++ (NSUInteger)currentURLCacheMemoryUsage {
+    return [[NSURLCache sharedURLCache] currentMemoryUsage];
+}
+
++ (NSUInteger)currentURLCacheDiskUsage {
+    return [[NSURLCache sharedURLCache] currentDiskUsage];
+}
+
++ (void)setupCacheWithMemoryCapacity:(NSUInteger)memoryCapacity
+                        diskCapacity:(NSUInteger)diskCapacity {
+    [[NSURLCache sharedURLCache] setMemoryCapacity:memoryCapacity];
+    [[NSURLCache sharedURLCache] setDiskCapacity:diskCapacity];
+}
+
++ (void)clearCache {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 @end

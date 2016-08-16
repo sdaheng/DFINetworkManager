@@ -10,9 +10,9 @@
 
 #import "DFINetworkServiceRACSignalSupportInterface.h"
 
-@implementation DFINetworkService (RACSignalSupport)
-
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
+
+@implementation DFINetworkService (RACSignalSupport)
 
 + (RACSignal *)signalFetchDataByName:(NSString *)name
                           Paramaters:(NSDictionary *)paramaters{
@@ -48,6 +48,5 @@
     return [RACSignal empty];
 }
 
-#endif
-
 @end
+#endif

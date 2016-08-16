@@ -9,9 +9,9 @@
 #ifndef DFINetworkManager_DFINetworkManagerTypes_h
 #define DFINetworkManager_DFINetworkManagerTypes_h
 
-typedef void(^successBlock)(id ret);
-typedef void(^failBlock)(NSError *error);
+typedef void(^DFISuccessBlock)(id ret);
+typedef void(^DFIFailBlock)(NSError *error);
 
-typedef successBlock resultBlock;
+typedef DFISuccessBlock DFIAPIRequestResultBlock;
 
 #endif

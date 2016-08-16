@@ -72,16 +72,6 @@
 }
 
 + (void)fetchDataFromURL:(NSString *)URLString
-            successBlock:(void (^)(id result))success
-               failBlock:(void (^)(NSError *error))fail {
-    
-    [self fetchDataFromURL:URLString
-                paramaters:nil
-               successBlock:success
-                 failBlock:fail];
-}
-
-+ (void)fetchDataFromURL:(NSString *)URLString
               paramaters:(NSDictionary *)paramaters
             successBlock:(void (^)(id result))success
                failBlock:(void (^)(NSError *error))fail {
@@ -104,6 +94,8 @@
          if (success) {
              success(parsedJSONObject);
          }
+         
+         [self storeURLCacheWithDataTask:task data:responseObject];
      }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          
@@ -115,8 +107,8 @@
 
 + (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
-              success:(successBlock)success
-                 fail:(failBlock)fail {
+              success:(DFISuccessBlock)success
+                 fail:(DFIFailBlock)fail {
     [[[self sharedInstance] HTTPSessionManager]
      POST:URLString parameters:paramaters progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -135,6 +127,8 @@
           if (success){
               success(parsedJSONObject);
           }
+         
+         [self storeURLCacheWithDataTask:task data:responseObject];
       }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
           if (fail) {
@@ -147,8 +141,8 @@
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(successBlock)success
-                 fail:(failBlock)fail {
+              success:(DFISuccessBlock)success
+                 fail:(DFIFailBlock)fail {
     
     [[[self sharedInstance] HTTPSessionManager]
      POST:URLString
@@ -185,6 +179,8 @@
           if (success){
               success(parsedJSONObject);
           }
+           
+           [self storeURLCacheWithDataTask:task data:responseObject];
        }
         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             if (fail) {
@@ -195,8 +191,8 @@
 
 + (void)headDataToURL:(NSString *)URL
            paramaters:(NSDictionary *)paramaters
-              success:(successBlock)success
-                 fail:(failBlock)fail {
+              success:(DFISuccessBlock)success
+                 fail:(DFIFailBlock)fail {
     [[[self sharedInstance] HTTPSessionManager]
      HEAD:URL parameters:paramaters success:^(NSURLSessionDataTask * _Nonnull task) {
           if (success) {
@@ -213,8 +209,8 @@
 
 + (void)deleteDataToURL:(NSString *)URL
              paramaters:(NSDictionary *)paramters
-                success:(successBlock)success
-                   fail:(failBlock)fail {
+                success:(DFISuccessBlock)success
+                   fail:(DFIFailBlock)fail {
 
     [[[self sharedInstance] HTTPSessionManager]
      DELETE:URL parameters:paramters success:^(NSURLSessionDataTask * _Nonnull task,
@@ -234,8 +230,8 @@
 + (void)uploadDataToURL:(NSString *)URL
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successBlock)successBlock
-              failBlock:(failBlock)failBlock {
+           successBlock:(DFISuccessBlock)successBlock
+              failBlock:(DFIFailBlock)failBlock {
 
     NSURLSessionUploadTask *sessionUploadTask =
     [[[self sharedInstance] URLSessionManager]
@@ -268,8 +264,8 @@
 + (void)downloadWithURL:(NSString *)URLString
     destinationFilePath:(NSString *)filePath
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(successBlock)successBlock
-              failBlock:(failBlock)failBlock {
+           successBlock:(DFISuccessBlock)successBlock
+              failBlock:(DFIFailBlock)failBlock {
 
     NSURLSessionDownloadTask *sessionDownloadTask =
     [[[self sharedInstance] URLSessionManager]
@@ -307,6 +303,23 @@
     }];
     
     [sessionDownloadTask resume];
+}
+
++ (void)cancelHTTPRequest {
+    [[[self sharedInstance] HTTPSessionManager] invalidateSessionCancelingTasks:YES];
+}
+
++ (void)cancelDataRequest {
+    [[[self sharedInstance] URLSessionManager] invalidateSessionCancelingTasks:YES];
+}
+
++ (void)storeURLCacheWithDataTask:(NSURLSessionDataTask *)task data:(NSData *)data {
+    NSCachedURLResponse *cachedURLResponse =
+    [[NSCachedURLResponse alloc] initWithResponse:task.response
+                                             data:data];
+    
+    [[NSURLCache sharedURLCache] storeCachedResponse:cachedURLResponse
+                                         forDataTask:task];
 }
 
 @end

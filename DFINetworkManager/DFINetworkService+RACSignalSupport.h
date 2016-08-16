@@ -10,11 +10,8 @@
 
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#endif
 
 @interface DFINetworkService (RACSignalSupport)
-
-#if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 
 /**
  *  使用RACSignal的GET请求
@@ -37,6 +34,7 @@
  */
 + (RACSignal *)signalSendDataByName:(NSString *)name
                          Paramaters:(NSDictionary *)paramaters;
-#endif
 
 @end
+#endif
+
