@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
 
   #  When using multiple platforms
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.7"
+  #s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
@@ -90,7 +90,16 @@ Pod::Spec.new do |s|
   s.source_files  = "DFINetworkManager", "DFINetworkManager/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "Classes/**/*.h"
+  s.public_header_files = ['DFINetworkManager/DFINetworkManagerTypes.h',
+	'DFINetworkManager/DFINetworkServiceInterface.h',
+	'DFINetworkManager/DFINetworkService.h',
+	'DFINetworkManager/DFINetworkAPIRequest.h',
+	'DFINetworkManager/DFINetworkServiceAPIRequestDelegate.h',
+	'DFINetworkManager/DFINetworkReachabilityManager.h',
+	'DFINetworkManager/DFINetworkManagerDefines.h',
+	'DFINetworkManager/DFINetworkNotificationNames.h',
+	'DFINetworkManager/DFINetworkService+RACSignalSupport.h',
+	'DFINetworkManager/DFINetworkServiceRACSignalSupportInterface.h']
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
