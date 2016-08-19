@@ -17,7 +17,7 @@ FOUNDATION_EXPORT const unsigned char DFINetworkManagerVersionString[];
 #ifdef __OBJC__
 
 #import "DFINetworkManagerTypes.h"
-#import "DFINetworkServiceInterface.h"
+#import "DFINetworkServiceProtocol.h"
 #import "DFINetworkService.h"
 #import "DFINetworkAPIRequest.h"
 #import "DFINetworkServiceAPIRequestDelegate.h"
@@ -27,7 +27,7 @@ FOUNDATION_EXPORT const unsigned char DFINetworkManagerVersionString[];
 
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 #import "DFINetworkService+RACSignalSupport.h"
-#import "DFINetworkServiceRACSignalSupportInterface.h"
+#import "DFINetworkServiceRACSupportProtocol.h"
 #endif
 
 #endif

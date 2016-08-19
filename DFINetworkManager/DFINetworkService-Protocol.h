@@ -11,7 +11,7 @@
 #import "DFINetworkManagerTypes.h"
 #import "DFINetworkServiceAPIRequestDelegate.h"
 
-@protocol DFINetworkServiceInterface <NSObject>
+@protocol DFINetworkServiceProtocol <NSObject>
 
 @optional
 

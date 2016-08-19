@@ -6,17 +6,17 @@
 //  Copyright © 2016 com.dazhongcun. All rights reserved.
 //
 
-#import "DFINetworkService+RACSignalSupport.h"
+#import "DFINetworkService+RACSupport.h"
 
-#import "DFINetworkServiceRACSignalSupportInterface.h"
+#import "DFINetworkServiceRACSupport-Protocol.h"
 
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 
-@implementation DFINetworkService (RACSignalSupport)
+@implementation DFINetworkService (RACSupport)
 
 + (RACSignal *)signalFetchDataByName:(NSString *)name
                           Paramaters:(NSDictionary *)paramaters{
-    id <DFINetworkServiceRACSignalSupportInterface> interface = nil;
+    id <DFINetworkServiceRACSupportProtocol> interface = nil;
     
     id networkService = [[NSClassFromString(name) alloc] init];
     
@@ -33,7 +33,7 @@
 + (RACSignal *)signalSendDataByName:(NSString *)name
                          Paramaters:(NSDictionary *)paramaters {
     
-    id <DFINetworkServiceRACSignalSupportInterface> interface = nil;
+    id <DFINetworkServiceRACSupportProtocol> interface = nil;
     
     id networkService = [[NSClassFromString(name) alloc] init];
     

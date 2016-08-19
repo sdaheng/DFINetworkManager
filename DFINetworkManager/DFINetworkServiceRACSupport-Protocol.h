@@ -1,5 +1,5 @@
 //
-//  DFINetworkServiceRACSignalSupportInterface.h
+//  DFINetworkServiceRACSupportProtocol.h
 //  DFINetworkManager
 //
 //  Created by SDH on 3/15/16.
@@ -11,7 +11,7 @@
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@protocol DFINetworkServiceRACSignalSupportInterface <NSObject>
+@protocol DFINetworkServiceRACSupportProtocol <NSObject>
 
 - (RACSignal *)signalFetchDataWithURLParamaters:(NSDictionary *)paramaters;
 

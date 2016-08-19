@@ -7,14 +7,14 @@
 //
 
 #import "DFINetworkService.h"
-#import "DFINetworkServiceInterface.h"
+#import "DFINetworkService-Protocol.h"
 #import "DFINetworkAPIRequest.h"
 
 @implementation DFINetworkService
 
 + (void)fetchDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters{
     
-    id <DFINetworkServiceInterface> interface = nil;
+    id <DFINetworkServiceProtocol> interface = nil;
     
     id networkService = [[NSClassFromString(name) alloc] init];
     
@@ -29,7 +29,7 @@
              Paramaters:(NSDictionary *)paramaters
                delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate{
     
-    id <DFINetworkServiceInterface> interface = nil;
+    id <DFINetworkServiceProtocol> interface = nil;
     
     id networkService = [[NSClassFromString(name) alloc] init];
     
@@ -47,7 +47,7 @@
              Paramaters:(NSDictionary *)paramaters
             resultBlock:(DFIAPIRequestResultBlock)result{
     
-    id <DFINetworkServiceInterface> interface = nil;
+    id <DFINetworkServiceProtocol> interface = nil;
     
     id networkService = [[NSClassFromString(name) alloc] init];
     
@@ -67,7 +67,7 @@
 
 + (void)sendDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters{
     
-    id <DFINetworkServiceInterface> interface = nil;
+    id <DFINetworkServiceProtocol> interface = nil;
     
     id networkService = [[NSClassFromString(name) alloc] init];
     
@@ -82,7 +82,7 @@
             Paramaters:(NSDictionary *)paramaters
               delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate{
     
-    id <DFINetworkServiceInterface> interface = nil;
+    id <DFINetworkServiceProtocol> interface = nil;
     
     id networkService = [[NSClassFromString(name) alloc] init];
     
@@ -100,7 +100,7 @@
             Paramaters:(NSDictionary *)paramaters
            resultBlock:(DFIAPIRequestResultBlock)result{
     
-    id <DFINetworkServiceInterface> interface = nil;
+    id <DFINetworkServiceProtocol> interface = nil;
     
     id networkService = [[NSClassFromString(name) alloc] init];
     

@@ -11,7 +11,7 @@
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface DFINetworkService (RACSignalSupport)
+@interface DFINetworkService (RACSupport)
 
 /**
  *  使用RACSignal的GET请求
