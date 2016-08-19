@@ -1,4 +1,4 @@
-#
+
 #  Be sure to run `pod spec lint PodSpec.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
@@ -76,7 +76,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/sdaheng/DFINetworkManager.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/sdaheng/DFINetworkManager.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -98,8 +98,8 @@ Pod::Spec.new do |s|
 	'DFINetworkManager/DFINetworkReachabilityManager.h',
 	'DFINetworkManager/DFINetworkManagerDefines.h',
 	'DFINetworkManager/DFINetworkNotificationNames.h',
-	'DFINetworkManager/DFINetworkService+RACSignalSupport.h',
-	'DFINetworkManager/DFINetworkServiceRACSignalSupportInterface.h']
+	'DFINetworkManager/DFINetworkService+RACSupport.h',
+	'DFINetworkManager/DFINetworkServiceRACSupport-Protocol.h']
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
