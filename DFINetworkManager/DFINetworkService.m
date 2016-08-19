@@ -9,6 +9,7 @@
 #import "DFINetworkService.h"
 #import "DFINetworkService-Protocol.h"
 #import "DFINetworkAPIRequest.h"
+#import "DFINetworkHTTPRequestService.h"
 
 @implementation DFINetworkService
 
@@ -122,8 +123,40 @@
     [DFINetworkAPIRequest cancelHTTPRequest];
 }
 
+
+
+@end
+
+@implementation DFINetworkService (DataRequest)
+
++ (void)uploadDataToURL:(NSString *)URLString
+               withData:(NSData *)data
+          progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
+           successBlock:(DFISuccessBlock)successBlock
+              failBlock:(DFIFailBlock)failBlock {
+    
+    [DFINetworkHTTPRequestService uploadDataToURL:URLString
+                                         withData:data
+                                    progressBlock:progressBlock
+                                     successBlock:successBlock
+                                        failBlock:failBlock];
+}
+
++ (void)downloadDataWithURL:(NSString *)URLString
+                destination:(NSString *)filePath
+              progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
+               successBlock:(DFISuccessBlock)successBlock
+                  failBlock:(DFIFailBlock)failBlock {
+    
+    [DFINetworkHTTPRequestService downloadWithURL:URLString
+                              destinationFilePath:filePath
+                                    progressBlock:progressBlock
+                                     successBlock:successBlock
+                                        failBlock:failBlock];
+}
+
 + (void)cancelDataRequest {
-    [DFINetworkAPIRequest cancelDataRequest];
+    [DFINetworkHTTPRequestService cancelDataRequest];
 }
 
 @end

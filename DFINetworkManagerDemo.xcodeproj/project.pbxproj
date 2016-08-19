@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E10DD5A1D66D9D600FF9DB3 /* NAFetchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E10DD591D66D9D600FF9DB3 /* NAFetchData.m */; };
 		6E449D721CB8B47300165E9B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D711CB8B47300165E9B /* main.m */; };
 		6E449D751CB8B47300165E9B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D741CB8B47300165E9B /* AppDelegate.m */; };
 		6E449D781CB8B47300165E9B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D771CB8B47300165E9B /* ViewController.m */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E10DD581D66D9D600FF9DB3 /* NAFetchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAFetchData.h; sourceTree = "<group>"; };
+		6E10DD591D66D9D600FF9DB3 /* NAFetchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAFetchData.m; sourceTree = "<group>"; };
 		6E449D6D1CB8B47300165E9B /* DFINetworkManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFINetworkManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E449D711CB8B47300165E9B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6E449D731CB8B47300165E9B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				6E449D741CB8B47300165E9B /* AppDelegate.m */,
 				6E449D761CB8B47300165E9B /* ViewController.h */,
 				6E449D771CB8B47300165E9B /* ViewController.m */,
+				6E10DD581D66D9D600FF9DB3 /* NAFetchData.h */,
+				6E10DD591D66D9D600FF9DB3 /* NAFetchData.m */,
 				6E449D791CB8B47300165E9B /* Main.storyboard */,
 				6E449D7C1CB8B47300165E9B /* Assets.xcassets */,
 				6E449D7E1CB8B47300165E9B /* LaunchScreen.storyboard */,
@@ -410,6 +415,7 @@
 				6E449DCD1CB8B49A00165E9B /* DFINetworkHTTPRequestService.m in Sources */,
 				6E449DD11CB8B49A00165E9B /* DFINetworkService+RACSupport.m in Sources */,
 				6E449DD41CB8B49A00165E9B /* DFINetworkTimeoutErrorHandler.m in Sources */,
+				6E10DD5A1D66D9D600FF9DB3 /* NAFetchData.m in Sources */,
 				6E449D781CB8B47300165E9B /* ViewController.m in Sources */,
 				6E449DCE1CB8B49A00165E9B /* DFINetworkNotificationNames.m in Sources */,
 				6E449DCC1CB8B49A00165E9B /* DFINetworkCannotConnectToHostErrorHandler.m in Sources */,

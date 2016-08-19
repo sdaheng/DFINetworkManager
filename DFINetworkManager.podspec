@@ -99,7 +99,8 @@ Pod::Spec.new do |s|
 	'DFINetworkManager/DFINetworkManagerDefines.h',
 	'DFINetworkManager/DFINetworkNotificationNames.h',
 	'DFINetworkManager/DFINetworkService+RACSupport.h',
-	'DFINetworkManager/DFINetworkServiceRACSupport-Protocol.h']
+	'DFINetworkManager/DFINetworkServiceRACSupport-Protocol.h'
+	'DFINetworkManager/DFINetworkDataRequest.h']
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

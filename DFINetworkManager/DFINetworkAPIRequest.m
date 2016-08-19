@@ -177,32 +177,6 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
                                            fail:fail];
 }
 
-+ (void)uploadDataToURL:(NSString *)URLString
-               withData:(NSData *)data
-          progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(DFISuccessBlock)successBlock
-              failBlock:(DFIFailBlock)failBlock {
-    
-    [DFINetworkHTTPRequestService uploadDataToURL:URLString
-                                         withData:data
-                                    progressBlock:progressBlock
-                                     successBlock:successBlock
-                                        failBlock:failBlock];
-}
-
-+ (void)downloadDataWithURL:(NSString *)URLString
-                destination:(NSString *)filePath
-              progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-               successBlock:(DFISuccessBlock)successBlock
-                  failBlock:(DFIFailBlock)failBlock {
-    
-    [DFINetworkHTTPRequestService downloadWithURL:URLString
-                              destinationFilePath:filePath
-                                    progressBlock:progressBlock
-                                     successBlock:successBlock
-                                        failBlock:failBlock];
-}
-
 + (void)handleRequestResult:(DFIAPIRequestResultBlock)resultBlock
                      result:(id)result
                    delegate:(id)delegate
@@ -227,10 +201,6 @@ NSString * const kDFINetworkRequestResultKey = @"kDFINetworkRequestResultKey";
             resultBlock(result);
         }
     }
-}
-
-+ (void)cancelDataRequest {
-    [DFINetworkHTTPRequestService cancelDataRequest];
 }
 
 + (void)cancelHTTPRequest {

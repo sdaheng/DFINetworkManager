@@ -72,37 +72,6 @@ typedef enum : NSUInteger {
               success:(DFISuccessBlock)success
                  fail:(DFIFailBlock)fail;
 
-/**
- *  Upload binary data to URL
- *
- *  @param URL           A URL which is binary data would upload
- *  @param data          Binary data
- *  @param progressBlock Upload progress block
- *  @param successBlock  If upload data success, invoke this block
- *  @param failBlock     If upload data fail, invoke this block
- */
-+ (void)uploadDataToURL:(NSString *)URLString
-               withData:(NSData *)data
-          progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(DFISuccessBlock)successBlock
-              failBlock:(DFIFailBlock)failBlock;
-
-/**
- *  Download something from URL
- *
- *  @param URL           Download file URL
- *  @param filePath      File path you want to save downloaded file
- *  @param progressBlock Download progress block
- *  @param successBlock  If download file success, invoke this block
- *  @param failBlock     If download file fail, invoke this block
- */
-+ (void)downloadDataWithURL:(NSString *)URLString
-                destination:(NSString *)filePath
-              progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-               successBlock:(DFISuccessBlock)successBlock
-                  failBlock:(DFIFailBlock)failBlock;
-
-+ (void)cancelDataRequest;
 + (void)cancelHTTPRequest;
 
 @end

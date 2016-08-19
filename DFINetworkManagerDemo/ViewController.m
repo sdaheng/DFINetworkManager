@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "DFINetworkService.h"
+
 @interface ViewController ()
 
 @end
@@ -16,6 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [DFINetworkService fetchDataByName:@"NAFetchData"
+                            Paramaters:nil
+                           resultBlock:^(id ret) {
+                               
+                           }];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
