@@ -8,10 +8,12 @@
 
 #import "NAFetchData.h"
 
-#import "DFINetworkService-Protocol.h"
-#import "DFINetworkAPIRequest.h"
+#import "DFINetworkManager.h"
 
-@interface NAFetchData () <DFINetworkServiceProtocol>
+NSString * const kNAFetchDataResultNotification = @"kNAFetchDataResultNotification";
+
+@interface NAFetchData () <DFINetworkServiceProtocol,
+                           DFINetworkServiceRACSupportProtocol>
 
 @end
 
@@ -26,9 +28,43 @@
                               paramaters:paramaters
                              requestType:DFINetworkManagerHTTPGetRequest
                              resultBlock:^(id ret) {
-                                 NSLog(@"fetch result from URL: %@ %@", URLString, ret);
                                  resultBlock ? resultBlock(ret) : nil;
                              }];
+}
+
+- (RACSignal *)signalFetchDataWithURLParamaters:(NSDictionary *)paramaters {
+    NSString *URLString = @"https://api.github.com/users/facebook";
+
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [DFINetworkAPIRequest requestWithURL:URLString
+                                  paramaters:paramaters
+                                 requestType:DFINetworkManagerHTTPGetRequest
+                                 resultBlock:^(id ret) {
+                                     SUBSCRIBER_DATA_HANDLER(subscriber, YES, ret);
+                                 }];
+        return nil;
+    }] replay];
+}
+
+- (void)fetchDataWithURLParamaters:(NSDictionary *)paramaters {
+    NSString *URLString = @"https://api.github.com/users/facebook";
+    
+    [DFINetworkAPIRequest requestWithURL:URLString
+                              paramaters:paramaters
+                             requestType:DFINetworkManagerHTTPGetRequest
+                        notificationName:kNAFetchDataResultNotification];
+ 
+}
+
+- (void)fetchDataWithURLParamaters:(NSDictionary *)paramaters
+                          delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate {
+    NSString *URLString = @"https://api.github.com/users/facebook";
+    
+    [DFINetworkAPIRequest requestWithURL:URLString
+                              paramaters:paramaters
+                             requestType:DFINetworkManagerHTTPGetRequest
+                                delegate:delegate];
 }
 
 @end

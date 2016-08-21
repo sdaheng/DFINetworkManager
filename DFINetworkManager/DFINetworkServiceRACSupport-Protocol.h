@@ -13,6 +13,7 @@
 
 @protocol DFINetworkServiceRACSupportProtocol <NSObject>
 
+@optional
 - (RACSignal *)signalFetchDataWithURLParamaters:(NSDictionary *)paramaters;
 
 - (RACSignal *)signalSendDataWithURLParamaters:(NSDictionary *)paramaters;

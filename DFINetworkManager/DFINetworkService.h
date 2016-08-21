@@ -125,3 +125,10 @@
 + (void)clearCache;
 
 @end
+
+@interface DFINetworkService (Log)
+
++ (void)setEnableLogRequest:(BOOL)enableLog;
++ (void)setEnableLogResult:(BOOL)enableLog;
+
+@end

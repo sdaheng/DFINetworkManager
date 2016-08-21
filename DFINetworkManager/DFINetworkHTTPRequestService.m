@@ -10,6 +10,7 @@
 #import "DFIErrorHandler.h"
 #import "DFINetworkManagerDefines.h"
 #import <AFNetworking/AFNetworking.h>
+#import <objc/runtime.h>
 
 //Only use for debug
 #ifndef DFINETWORK_ALLOW_INVALID_CERTFICATE 
@@ -40,7 +41,7 @@
         _HTTPSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
         _HTTPSessionManager.securityPolicy =
-        [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
+        [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         
 #ifdef DFINETWORK_ALLOW_INVALID_CERTFICATE
         _HTTPSessionManager.securityPolicy.allowInvalidCertificates =
@@ -79,29 +80,14 @@
     [[[self sharedInstance] HTTPSessionManager]
      GET:URLString parameters:paramaters progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         NSError *error = nil;
-         
-         id parsedJSONObject =
-         [NSJSONSerialization JSONObjectWithData:responseObject
-                                         options:NSJSONReadingMutableLeaves |
-                                                 NSJSONReadingAllowFragments
-                                           error:&error];
-         
-         if (error) {
-             NSLog(@"DFINetworkHTTPRequestService (GET) JSON error: %@", [error description]);
-         }
-         
-         if (success) {
-             success(parsedJSONObject);
-         }
+         [self handleAPIRequestResultWithResponseObject:responseObject
+                                           successBlock:success
+                                              failBlock:fail];
          
          [self storeURLCacheWithDataTask:task data:responseObject];
      }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         
-         if (fail) {
-             fail(error);
-         }
+         fail ? fail(error) : nil;
      }];
 }
 
@@ -112,28 +98,14 @@
     [[[self sharedInstance] HTTPSessionManager]
      POST:URLString parameters:paramaters progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-          NSError *error = nil;
-          
-          id parsedJSONObject =
-          [NSJSONSerialization JSONObjectWithData:responseObject
-                                          options:NSJSONReadingMutableLeaves |
-                                                  NSJSONReadingAllowFragments
-                                            error:&error];
-          
-          if (error) {
-              NSLog(@"DFINetworkHTTPRequestService (POST) JSON error: %@", [error description]);
-          }
-          
-          if (success){
-              success(parsedJSONObject);
-          }
+         [self handleAPIRequestResultWithResponseObject:responseObject
+                                           successBlock:success
+                                              failBlock:fail];
          
          [self storeURLCacheWithDataTask:task data:responseObject];
       }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-          if (fail) {
-              fail(error);
-          }
+         fail ? fail(error) : nil;
      }];
 }
 
@@ -160,32 +132,14 @@
     } progress:^(NSProgress * _Nonnull uploadProgress) {}
        success:^(NSURLSessionDataTask * _Nonnull task,
            id  _Nullable responseObject) {
-          NSError *error = nil;
           
-          id parsedJSONObject =
-          [NSJSONSerialization JSONObjectWithData:responseObject
-                                          options:NSJSONReadingMutableLeaves |
-                                                  NSJSONReadingAllowFragments
-                                            error:&error];
-          
-          if (error) {
-              NSLog(@"DFINetworkHTTPRequestService (POST) JSON error: %@", [error description]);
-              
-              if (fail) {
-                  fail(error);
-              }
-          }
-          
-          if (success){
-              success(parsedJSONObject);
-          }
-           
+           [self handleAPIRequestResultWithResponseObject:responseObject
+                                             successBlock:success
+                                                failBlock:fail];
            [self storeURLCacheWithDataTask:task data:responseObject];
        }
         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (fail) {
-                fail(error);
-            }
+            fail ? fail(error) : nil;
       }];
 }
 
@@ -201,9 +155,7 @@
       }
       failure:^(NSURLSessionDataTask * _Nullable task,
                 NSError * _Nonnull error) {
-          if (fail) {
-              fail(error);
-          }
+          fail ? fail(error) : nil;
       }];
 }
 
@@ -215,17 +167,34 @@
     [[[self sharedInstance] HTTPSessionManager]
      DELETE:URL parameters:paramters success:^(NSURLSessionDataTask * _Nonnull task,
                                                id  _Nullable responseObject) {
-                
-        if (success) {
-            success(responseObject);
-        }
+         success ? success(responseObject) : nil;
     }
     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (fail) {
-            fail(error);
-        }
+        fail ? fail(error) : nil;
     }];
 }
+
++ (void)handleAPIRequestResultWithResponseObject:(id)responseObject
+                                    successBlock:(DFISuccessBlock)successBlock
+                                       failBlock:(DFIFailBlock)failBlock {
+    NSError *error = nil;
+    
+    id parsedJSONObject =
+    [NSJSONSerialization JSONObjectWithData:responseObject
+                                    options:NSJSONReadingMutableLeaves |
+                                            NSJSONReadingAllowFragments
+                                      error:&error];
+    
+    if (error) {
+        NSLog(@"DFINetworkHTTPRequestService (POST) JSON error: %@", [error description]);
+        
+        failBlock ? failBlock(error) : nil;
+    }
+
+    successBlock ? successBlock(parsedJSONObject) : nil;
+}
+
+#pragma mark - Data Request
 
 + (void)uploadDataToURL:(NSString *)URL
                withData:(NSData *)data
@@ -320,6 +289,148 @@
     
     [[NSURLCache sharedURLCache] storeCachedResponse:cachedURLResponse
                                          forDataTask:task];
+}
+
+char * const enableLogRequestkey = '\0';
+char * const enableLogResultKey  = '\0';
+
++ (void)setEnableLogRequest:(BOOL)enableLog {
+    objc_setAssociatedObject(self, enableLogRequestkey, @(enableLog), OBJC_ASSOCIATION_ASSIGN);
+}
+
++ (void)setEnableLogResult:(BOOL)enableLog {
+    objc_setAssociatedObject(self, enableLogResultKey, @(enableLog), OBJC_ASSOCIATION_ASSIGN);
+}
+
+@end
+
+@interface DFINetworkHTTPRequestService (Log)
+
+@end
+
+@implementation DFINetworkHTTPRequestService (Log)
+
++ (void)load {
+    [self swizzleRequest];
+}
+
++ (void)swizzleRequest {
+    exchangeClassMethodImplementation([self class],
+                                      @selector(fetchDataFromURL:paramaters:successBlock:failBlock:),
+                                      @selector(swizzleFetchDataFromURL:paramaters:successBlock:failBlock:));
+    
+    exchangeClassMethodImplementation([self class],
+                                      @selector(sendDataToURL:paramaters:success:fail:),
+                                      @selector(swizzleSendDataToURL:paramaters:constructBody:bodyPartNames:success:fail:));
+    
+    exchangeClassMethodImplementation([self class],
+                                      @selector(headDataToURL:paramaters:success:fail:),
+                                      @selector(swizzleHeadDataToURL:paramaters:success:fail:));
+    
+    exchangeClassMethodImplementation([self class],
+                                      @selector(deleteDataToURL:paramaters:success:fail:),
+                                      @selector(swizzleDeleteDataToURL:paramaters:success:fail:));
+}
+
++ (void)swizzleFetchDataFromURL:(NSString *)URLString
+                     paramaters:(NSDictionary *)paramaters
+                   successBlock:(void (^)(id result))success
+                      failBlock:(void (^)(NSError *error))fail {
+    if ([objc_getAssociatedObject(self, enableLogRequestkey) boolValue]) {
+        NSLog(@"(GET) URL: %@ paramaters: %@", URLString, paramaters);
+    }
+    
+    [self swizzleFetchDataFromURL:URLString
+                       paramaters:paramaters
+                     successBlock:^(id result){
+                         if ([objc_getAssociatedObject(self, enableLogResultKey) boolValue]) {
+                             NSLog(@"(GET) URL: %@ result: %@", URLString, result);
+                             success ? success(result) : nil;
+                         }
+                     } failBlock:fail];
+}
+
++ (void)swizzleSendDataToURL:(NSString *)URLString
+                  paramaters:(NSDictionary *)paramaters
+                     success:(DFISuccessBlock)success
+                        fail:(DFIFailBlock)fail {
+    if ([objc_getAssociatedObject(self, enableLogRequestkey) boolValue]) {
+        NSLog(@"(POST) URL: %@ paramaters: %@", URLString, paramaters);
+    }
+    
+    [self swizzleSendDataToURL:URLString
+                    paramaters:paramaters
+                       success:^(id result) {
+                           if ([objc_getAssociatedObject(self, enableLogResultKey) boolValue]) {
+                               NSLog(@"(POST) URL: %@ result:%@", URLString, result);
+                               success ? success(result) : nil;
+                           }
+                       } fail:fail];
+}
+
++ (void)swizzleSendDataToURL:(NSString *)URLString
+                  paramaters:(NSDictionary *)paramaters
+               constructBody:(NSArray <NSData *> *)bodys
+               bodyPartNames:(NSArray <NSString *> *)bodyPartNames
+                     success:(DFISuccessBlock)success
+                        fail:(DFIFailBlock)fail {
+    if ([objc_getAssociatedObject(self, enableLogRequestkey) boolValue]) {
+        NSLog(@"Multipart (POST) URL: %@ paramater: %@", URLString, paramaters);
+    }
+    
+    [self swizzleSendDataToURL:URLString
+                    paramaters:paramaters
+                 constructBody:bodys
+                 bodyPartNames:bodyPartNames
+                       success:^(id result) {
+                           if ([objc_getAssociatedObject(self, enableLogResultKey) boolValue]) {
+                               NSLog(@"Multipart (POST) URL:%@ result: %@", URLString, result);
+                               success ? success(result) : nil;
+                           }
+                       } fail:fail];
+}
+
++ (void)swizzleHeadDataToURL:(NSString *)URL
+                  paramaters:(NSDictionary *)paramaters
+                     success:(DFISuccessBlock)success
+                        fail:(DFIFailBlock)fail {
+    if ([objc_getAssociatedObject(self, enableLogRequestkey) boolValue]) {
+        NSLog(@"(HEAD) URL: %@ paramater: %@",  URL, paramaters);
+    }
+    
+    [self swizzleHeadDataToURL:URL
+                    paramaters:paramaters
+                       success:^(id result) {
+                           if ([objc_getAssociatedObject(self, enableLogResultKey) boolValue]) {
+                               NSLog(@"(HEAD) URL: %@ result: %@", URL, result);
+                               success ? success(result) : nil;
+                           }
+                       } fail:fail];
+}
+
++ (void)swizzleDeleteDataToURL:(NSString *)URL
+                    paramaters:(NSDictionary *)paramters
+                       success:(DFISuccessBlock)success
+                          fail:(DFIFailBlock)fail {
+    if ([objc_getAssociatedObject(self, enableLogRequestkey) boolValue]) {
+        NSLog(@"(DELETE) URL: %@ paramater: %@", URL, paramters);
+    }
+    
+    [self swizzleDeleteDataToURL:URL
+                      paramaters:paramters
+                         success:^(id result) {
+                             if ([objc_getAssociatedObject(self, enableLogResultKey) boolValue]) {
+                                 NSLog(@"(DELETE) URL: %@ result: %@", URL, result);
+                             }
+                             success ? success(result) : nil;
+                         } fail:fail];
+}
+
+static void exchangeClassMethodImplementation(Class clazz, SEL origin, SEL destation) {
+    Method originMethod = class_getClassMethod(clazz, origin);
+    Method swizzleMethod = class_getClassMethod(clazz, destation);
+    
+    method_exchangeImplementations(originMethod, swizzleMethod);
 }
 
 @end

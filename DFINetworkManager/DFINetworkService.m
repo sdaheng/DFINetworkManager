@@ -13,7 +13,7 @@
 
 @implementation DFINetworkService
 
-+ (void)fetchDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters{
++ (void)fetchDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters {
     
     id <DFINetworkServiceProtocol> interface = nil;
     
@@ -28,7 +28,7 @@
 
 + (void)fetchDataByName:(NSString *)name
              Paramaters:(NSDictionary *)paramaters
-               delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate{
+               delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate {
     
     id <DFINetworkServiceProtocol> interface = nil;
     
@@ -37,7 +37,7 @@
     interface = networkService;
     
     if (interface &&
-        [interface respondsToSelector:@selector(fetchDataByName:Paramaters:delegate:)]) {
+        [interface respondsToSelector:@selector(fetchDataWithURLParamaters:delegate:)]) {
         
         [interface fetchDataWithURLParamaters:paramaters
                                      delegate:delegate];
@@ -46,7 +46,7 @@
 
 + (void)fetchDataByName:(NSString *)name
              Paramaters:(NSDictionary *)paramaters
-            resultBlock:(DFIAPIRequestResultBlock)result{
+            resultBlock:(DFIAPIRequestResultBlock)result {
     
     id <DFINetworkServiceProtocol> interface = nil;
     
@@ -66,7 +66,7 @@
     }
 }
 
-+ (void)sendDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters{
++ (void)sendDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters {
     
     id <DFINetworkServiceProtocol> interface = nil;
     
@@ -81,7 +81,7 @@
 
 + (void)sendDataByName:(NSString *)name
             Paramaters:(NSDictionary *)paramaters
-              delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate{
+              delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate {
     
     id <DFINetworkServiceProtocol> interface = nil;
     
@@ -99,7 +99,7 @@
 
 + (void)sendDataByName:(NSString *)name
             Paramaters:(NSDictionary *)paramaters
-           resultBlock:(DFIAPIRequestResultBlock)result{
+           resultBlock:(DFIAPIRequestResultBlock)result {
     
     id <DFINetworkServiceProtocol> interface = nil;
     
@@ -122,8 +122,6 @@
 + (void)cancelHTTPRequest {
     [DFINetworkAPIRequest cancelHTTPRequest];
 }
-
-
 
 @end
 
@@ -179,6 +177,18 @@
 
 + (void)clearCache {
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
+}
+
+@end
+
+@implementation DFINetworkService (Log)
+
++ (void)setEnableLogRequest:(BOOL)enableLog {
+    [DFINetworkHTTPRequestService setEnableLogRequest:enableLog];
+}
+
++ (void)setEnableLogResult:(BOOL)enableLog {
+    [DFINetworkHTTPRequestService setEnableLogResult:enableLog];
 }
 
 @end

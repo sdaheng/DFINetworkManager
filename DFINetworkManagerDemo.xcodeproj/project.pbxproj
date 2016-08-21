@@ -24,7 +24,7 @@
 		6E449DD11CB8B49A00165E9B /* DFINetworkService+RACSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449DB91CB8B49A00165E9B /* DFINetworkService+RACSupport.m */; };
 		6E449DD21CB8B49A00165E9B /* DFINetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449DBB1CB8B49A00165E9B /* DFINetworkService.m */; };
 		6E449DD41CB8B49A00165E9B /* DFINetworkTimeoutErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449DC21CB8B49A00165E9B /* DFINetworkTimeoutErrorHandler.m */; };
-		FA9934C7E8717EFDF40C60A2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A15944696D3E3DCD85F8A9 /* libPods.a */; };
+		DCBA1581E4AA036A8AE33F0D /* Pods_DFINetworkManagerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F634649655F2FE20BDA9C11 /* Pods_DFINetworkManagerDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35D79C6E7BAE8253348CD76B /* Pods-DFINetworkManagerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFINetworkManagerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFINetworkManagerDemo/Pods-DFINetworkManagerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		42147CE9228F77F79EA21560 /* Pods-DFINetworkManagerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFINetworkManagerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DFINetworkManagerDemo/Pods-DFINetworkManagerDemo.release.xcconfig"; sourceTree = "<group>"; };
+		5F634649655F2FE20BDA9C11 /* Pods_DFINetworkManagerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFINetworkManagerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E10DD581D66D9D600FF9DB3 /* NAFetchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAFetchData.h; sourceTree = "<group>"; };
 		6E10DD591D66D9D600FF9DB3 /* NAFetchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAFetchData.m; sourceTree = "<group>"; };
 		6E449D6D1CB8B47300165E9B /* DFINetworkManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFINetworkManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,9 +89,7 @@
 		6E449DBE1CB8B49A00165E9B /* DFINetworkServiceRACSupport-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DFINetworkServiceRACSupport-Protocol.h"; sourceTree = "<group>"; };
 		6E449DC11CB8B49A00165E9B /* DFINetworkTimeoutErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFINetworkTimeoutErrorHandler.h; sourceTree = "<group>"; };
 		6E449DC21CB8B49A00165E9B /* DFINetworkTimeoutErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFINetworkTimeoutErrorHandler.m; sourceTree = "<group>"; };
-		6F0AC38E829F9AA26ADB58F3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		92A15944696D3E3DCD85F8A9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F79A87546B64C0D6311CEF7B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6EA133971D693DE500D78E33 /* NotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationNames.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA9934C7E8717EFDF40C60A2 /* libPods.a in Frameworks */,
+				DCBA1581E4AA036A8AE33F0D /* Pods_DFINetworkManagerDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +118,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30CC323B7596B23096542B04 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				35D79C6E7BAE8253348CD76B /* Pods-DFINetworkManagerDemo.debug.xcconfig */,
+				42147CE9228F77F79EA21560 /* Pods-DFINetworkManagerDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6E449D641CB8B47300165E9B = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +135,8 @@
 				6E449D891CB8B47300165E9B /* DFINetworkManagerDemoTests */,
 				6E449D941CB8B47300165E9B /* DFINetworkManagerDemoUITests */,
 				6E449D6E1CB8B47300165E9B /* Products */,
-				B9EA65642B857524FC847BA5 /* Pods */,
-				A7369264A10D88654F23584E /* Frameworks */,
+				30CC323B7596B23096542B04 /* Pods */,
+				EACD2ADE364B5012173F320A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +157,7 @@
 				6E449D741CB8B47300165E9B /* AppDelegate.m */,
 				6E449D761CB8B47300165E9B /* ViewController.h */,
 				6E449D771CB8B47300165E9B /* ViewController.m */,
+				6EA133971D693DE500D78E33 /* NotificationNames.h */,
 				6E10DD581D66D9D600FF9DB3 /* NAFetchData.h */,
 				6E10DD591D66D9D600FF9DB3 /* NAFetchData.m */,
 				6E449D791CB8B47300165E9B /* Main.storyboard */,
@@ -214,21 +225,12 @@
 			path = DFINetworkManager;
 			sourceTree = "<group>";
 		};
-		A7369264A10D88654F23584E /* Frameworks */ = {
+		EACD2ADE364B5012173F320A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				92A15944696D3E3DCD85F8A9 /* libPods.a */,
+				5F634649655F2FE20BDA9C11 /* Pods_DFINetworkManagerDemo.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B9EA65642B857524FC847BA5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6F0AC38E829F9AA26ADB58F3 /* Pods.debug.xcconfig */,
-				F79A87546B64C0D6311CEF7B /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,12 +240,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E449D9A1CB8B47300165E9B /* Build configuration list for PBXNativeTarget "DFINetworkManagerDemo" */;
 			buildPhases = (
-				E00CCA8E753AA4E1E1C56E6A /* Check Pods Manifest.lock */,
+				82B8D75EF1DB0ED6E8EF4648 /* [CP] Check Pods Manifest.lock */,
 				6E449D691CB8B47300165E9B /* Sources */,
 				6E449D6A1CB8B47300165E9B /* Frameworks */,
 				6E449D6B1CB8B47300165E9B /* Resources */,
-				7219BAF6686C6C2D6F6404FC /* Embed Pods Frameworks */,
-				BD56E2D5FFAC41DF8B919BF4 /* Copy Pods Resources */,
+				7644D6AF3CA2025F93CB0920 /* [CP] Embed Pods Frameworks */,
+				B5DBE50BEAB5D43D533AF8C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -360,49 +362,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7219BAF6686C6C2D6F6404FC /* Embed Pods Frameworks */ = {
+		7644D6AF3CA2025F93CB0920 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DFINetworkManagerDemo/Pods-DFINetworkManagerDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BD56E2D5FFAC41DF8B919BF4 /* Copy Pods Resources */ = {
+		82B8D75EF1DB0ED6E8EF4648 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E00CCA8E753AA4E1E1C56E6A /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B5DBE50BEAB5D43D533AF8C6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DFINetworkManagerDemo/Pods-DFINetworkManagerDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -562,7 +564,7 @@
 		};
 		6E449D9B1CB8B47300165E9B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F0AC38E829F9AA26ADB58F3 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 35D79C6E7BAE8253348CD76B /* Pods-DFINetworkManagerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DFINetworkManagerDemo/Info.plist;
@@ -575,7 +577,7 @@
 		};
 		6E449D9C1CB8B47300165E9B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F79A87546B64C0D6311CEF7B /* Pods.release.xcconfig */;
+			baseConfigurationReference = 42147CE9228F77F79EA21560 /* Pods-DFINetworkManagerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DFINetworkManagerDemo/Info.plist;

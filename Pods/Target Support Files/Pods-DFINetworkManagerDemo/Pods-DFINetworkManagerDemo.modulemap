@@ -1,0 +1,6 @@
+framework module Pods_DFINetworkManagerDemo {
+  umbrella header "Pods-DFINetworkManagerDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

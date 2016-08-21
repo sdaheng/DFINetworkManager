@@ -26,7 +26,6 @@
     #define SUBSCRIBER_DATA_HANDLER_4(subscriber, success, result, errorDescription) \
             do {               \
                 if (success) { \
-                    NSLog(@"result %@", result);   \
                     [subscriber sendNext:result];  \
                     [subscriber sendCompleted];    \
                 } else {                           \

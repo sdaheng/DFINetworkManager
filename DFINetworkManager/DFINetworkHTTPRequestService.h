@@ -89,4 +89,7 @@
 + (void)cancelHTTPRequest;
 + (void)cancelDataRequest;
 
++ (void)setEnableLogRequest:(BOOL)enableLog;
++ (void)setEnableLogResult:(BOOL)enableLog;
+
 @end
