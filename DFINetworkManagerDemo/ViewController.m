@@ -20,33 +20,55 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    [self setupNetowrkRequestLog];
+    
+    [self fetchDataByBlock];
+    
+    [self fetchDataBySignal];
+    
+    [self fetchDataByDelegte];
+    
+    [self registerNotificationObserver];
+    // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)setupNetowrkRequestLog {
     [DFINetworkService setEnableLogResult:YES];
     [DFINetworkService setEnableLogRequest:YES];
-//    [DFINetworkService clearCache];
+}
+
+- (void)fetchDataByBlock {
     [DFINetworkService fetchDataByName:@"NAFetchData"
                             Paramaters:nil
                            resultBlock:^(id ret) {
                                
                            }];
-    
+}
+
+- (void)fetchDataBySignal {
     [[DFINetworkService signalFetchDataByName:@"NAFetchData"
-                                  Paramaters:nil]
+                                   Paramaters:nil]
      subscribeNext:^(id x) {
          
      }];
-    
+}
+
+- (void)fetchDataByNotification {
     [DFINetworkService fetchDataByName:@"NAFetchData"
                             Paramaters:nil];
-    
+}
+
+- (void)fetchDataByDelegte {
     [DFINetworkService fetchDataByName:@"NAFetchData"
                             Paramaters:nil
                               delegate:self];
-    
+}
+
+- (void)registerNotificationObserver {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
                                                  name:kNAFetchDataResultNotification
                                                object:nil];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)handleNotification:(NSNotification *)notification {
@@ -57,6 +79,10 @@
 
 - (void)networkAPIRequestTask:(NSURLSessionDataTask *)task result:(NSDictionary *)result {
     
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -27,9 +27,7 @@ NSString * const kNAFetchDataResultNotification = @"kNAFetchDataResultNotificati
     [DFINetworkAPIRequest requestWithURL:URLString
                               paramaters:paramaters
                              requestType:DFINetworkManagerHTTPGETRequest
-                             resultBlock:^(id ret) {
-                                 resultBlock ? resultBlock(ret) : nil;
-                             }];
+                             resultBlock:resultBlock];
 }
 
 - (RACSignal *)signalFetchDataWithURLParamaters:(NSDictionary *)paramaters {
