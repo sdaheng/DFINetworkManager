@@ -37,12 +37,8 @@
 
 + (RACSignal *)signalFetchDataByName:(NSString *)name
                           Paramaters:(NSDictionary *)paramaters{
-    id <DFINetworkServiceRACSupportProtocol> interface = nil;
-    
-    id networkService = [[NSClassFromString(name) alloc] init];
-    
-    interface = networkService;
-    
+    id <DFINetworkServiceRACSupportProtocol> interface = [[NSClassFromString(name) alloc] init];
+
     if (interface &&
         [interface respondsToSelector:@selector(signalFetchDataWithURLParamaters:)]) {
         return [interface signalFetchDataWithURLParamaters:paramaters];
@@ -56,11 +52,7 @@
 + (RACSignal *)signalSendDataByName:(NSString *)name
                          Paramaters:(NSDictionary *)paramaters {
     
-    id <DFINetworkServiceRACSupportProtocol> interface = nil;
-    
-    id networkService = [[NSClassFromString(name) alloc] init];
-    
-    interface = networkService;
+    id <DFINetworkServiceRACSupportProtocol> interface = [[NSClassFromString(name) alloc] init];
     
     if (interface &&
         [interface respondsToSelector:@selector(signalSendDataWithURLParamaters:)]) {
