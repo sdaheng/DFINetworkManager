@@ -10,6 +10,6 @@
 
 @protocol DFINetworkServiceAPIRequestDelegate <NSObject>
 
-- (void)networkAPIRequestResult:(NSDictionary *)result;
+- (void)networkAPIRequestTask:(NSURLSessionDataTask *)task result:(NSDictionary *)result;
 
 @end

@@ -11,10 +11,12 @@
 #import "DFINetworkServiceAPIRequestDelegate.h"
 #import "DFINetworkManagerTypes.h"
 
+@class DFINetworkHTTPConfiguration;
+@class DFINetworkHTTPSecurityConfiguration;
 @interface DFINetworkService : NSObject
 
 /**
- *@brief 通过不同的类名从服务器获取不同的数据（GET）, 获取结果由通知返回
+ *@brief Fetch data by class name.（GET) 获取结果由通知返回
  *@param 网络请求接口的类名
  *@param 要传的参数
  *@return 无
@@ -93,8 +95,8 @@
 + (void)uploadDataToURL:(NSString *)URLString
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(DFISuccessBlock)successBlock
-              failBlock:(DFIFailBlock)failBlock;
+           successBlock:(DFINetworkRequestSuccessBlock)successBlock
+              failBlock:(DFINetworkRequestFailBlock)failBlock;
 
 /**
  *  Download something from URL
@@ -108,14 +110,28 @@
 + (void)downloadDataWithURL:(NSString *)URLString
                 destination:(NSString *)filePath
               progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-               successBlock:(DFISuccessBlock)successBlock
-                  failBlock:(DFIFailBlock)failBlock;
+               successBlock:(DFINetworkRequestSuccessBlock)successBlock
+                  failBlock:(DFINetworkRequestFailBlock)failBlock;
 
 + (void)cancelDataRequest;
 
 @end
 
+@interface DFINetworkService (Configuration)
+
++ (void)setHTTPNetworkServiceConfiguration:(DFINetworkHTTPConfiguration *)configuration;
++ (void)setHTTPSNetworkServiceConfiguration:(DFINetworkHTTPSecurityConfiguration *)configuration;
+
+@end
+
 @interface DFINetworkService (Cache)
+
+/**
+ *  Default is YES
+ *
+ *  @param enableURLCache enableURLCache
+ */
++ (void)enableURLCache:(BOOL)enableURLCache;
 
 + (NSUInteger)currentURLCacheMemoryUsage;
 + (NSUInteger)currentURLCacheDiskUsage;

@@ -16,12 +16,10 @@
  */
 DFI_NM_EXPORT NSString * const kDFINetworkRequestResultKey;
 
-typedef void(^DFIAPIRequestResultBlock)(id ret);
-
 typedef enum : NSUInteger {
-    DFINetworkManagerHTTPGetRequest,
-    DFINetworkManagerHTTPPostRequest,
-    DFINetworkManagerHTTPHeadRequest
+    DFINetworkManagerHTTPGETRequest,
+    DFINetworkManagerHTTPPOSTRequest,
+    DFINetworkManagerHTTPHEADRequest
 } DFINetworkManagerRequestType;
 
 @interface DFINetworkAPIRequest : NSObject
@@ -69,8 +67,8 @@ typedef enum : NSUInteger {
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(DFISuccessBlock)success
-                 fail:(DFIFailBlock)fail;
+              success:(DFIAPIRequestResultBlock)success
+                 fail:(DFINetworkRequestFailBlock)fail;
 
 + (void)cancelHTTPRequest;
 

@@ -10,5 +10,6 @@
 #define NotificationNames_h
 
 extern NSString * const kNAFetchDataResultNotification;
+extern NSString * const kNASendDataResultNotification;
 
 #endif /* NotificationNames_h */

@@ -22,7 +22,7 @@
    
     [DFINetworkService setEnableLogResult:YES];
     [DFINetworkService setEnableLogRequest:YES];
-    
+//    [DFINetworkService clearCache];
     [DFINetworkService fetchDataByName:@"NAFetchData"
                             Paramaters:nil
                            resultBlock:^(id ret) {
@@ -55,8 +55,8 @@
     }
 }
 
-- (void)networkAPIRequestResult:(NSDictionary *)result {
-    // result of +[DFINetworkService fetchDataByName:Paramaters:delegate:];
+- (void)networkAPIRequestTask:(NSURLSessionDataTask *)task result:(NSDictionary *)result {
+    
 }
 
 - (void)didReceiveMemoryWarning {

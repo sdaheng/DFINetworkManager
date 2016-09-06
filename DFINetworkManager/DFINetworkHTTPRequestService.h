@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "DFINetworkManagerTypes.h"
 
+@class DFINetworkHTTPConfiguration;
+@class DFINetworkHTTPSecurityConfiguration;
 @interface DFINetworkHTTPRequestService : NSObject
 
 /**
@@ -21,8 +23,8 @@
  */
 + (void)fetchDataFromURL:(NSString *)URLString
               paramaters:(NSDictionary *)paramaters
-            successBlock:(void (^)(id result))success
-               failBlock:(void (^)(NSError *error))fail;
+            successBlock:(DFINetworkRequestSuccessBlock)success
+               failBlock:(DFINetworkRequestFailBlock)fail;
 
 /**
  *@brief 向服务端发送数据(POST)
@@ -33,15 +35,15 @@
  */
 + (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
-              success:(DFISuccessBlock)success
-                 fail:(DFIFailBlock)fail;
+              success:(DFINetworkRequestSuccessBlock)success
+                 fail:(DFINetworkRequestFailBlock)fail;
 
 + (void)sendDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
         constructBody:(NSArray <NSData *> *)bodys
         bodyPartNames:(NSArray <NSString *> *)bodyPartNames
-              success:(DFISuccessBlock)success
-                 fail:(DFIFailBlock)fail;
+              success:(DFINetworkRequestSuccessBlock)success
+                 fail:(DFINetworkRequestFailBlock)fail;
 
 /**
  *  Get HTTP HEAD from URL
@@ -53,8 +55,13 @@
  */
 + (void)headDataToURL:(NSString *)URLString
            paramaters:(NSDictionary *)paramaters
-              success:(DFISuccessBlock)success
-                 fail:(DFIFailBlock)fail;
+              success:(DFINetworkRequestSuccessBlock)success
+                 fail:(DFINetworkRequestFailBlock)fail;
+
++ (void)deleteDataToURL:(NSString *)URL
+             paramaters:(NSDictionary *)paramters
+                success:(DFINetworkRequestSuccessBlock)success
+                   fail:(DFINetworkRequestFailBlock)fail;
 
 /**
  *  Upload data to URL
@@ -68,8 +75,8 @@
 + (void)uploadDataToURL:(NSString *)URLString
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(DFISuccessBlock)successBlock
-              failBlock:(DFIFailBlock)failBlock;
+           successBlock:(DFINetworkRequestSuccessBlock)successBlock
+              failBlock:(DFINetworkRequestFailBlock)failBlock;
 
 /**
  *  Download a file from URL
@@ -83,13 +90,15 @@
 + (void)downloadWithURL:(NSString *)URLString
     destinationFilePath:(NSString *)filePath
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(DFISuccessBlock)successBlock
-              failBlock:(DFIFailBlock)failBlock;
+           successBlock:(DFINetworkRequestSuccessBlock)successBlock
+              failBlock:(DFINetworkRequestFailBlock)failBlock;
 
 + (void)cancelHTTPRequest;
 + (void)cancelDataRequest;
 
-+ (void)setEnableLogRequest:(BOOL)enableLog;
-+ (void)setEnableLogResult:(BOOL)enableLog;
++ (void)setHTTPRequestConfiguration:(DFINetworkHTTPConfiguration *)configuration;
++ (void)setHTTPSRequestConfiguration:(DFINetworkHTTPSecurityConfiguration *)configuration;
+
++ (void)setEnableCache:(BOOL)enableCache;
 
 @end

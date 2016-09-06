@@ -7,22 +7,29 @@
 //
 
 #import "DFINetworkService.h"
-#import "DFINetworkService-Protocol.h"
+#import "DFINetworkServiceProtocol.h"
 #import "DFINetworkAPIRequest.h"
 #import "DFINetworkHTTPRequestService.h"
+#import "DFINetworkHTTPRequestService+Log.h"
+#import "DFINetworkHTTPConfiguration.h"
+
+#ifndef DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION
+#   define DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(sel)                                      \
+        @throw [NSException exceptionWithName:@"DFINetworkService Protocol Method Not Implement"    \
+                                       reason:[NSString stringWithFormat:@"%s NOT implement", #sel] \
+                                     userInfo:nil];
+#endif
 
 @implementation DFINetworkService
 
 + (void)fetchDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters {
     
-    id <DFINetworkServiceProtocol> interface = nil;
-    
-    id networkService = [[NSClassFromString(name) alloc] init];
-    
-    interface = networkService;
-    
+    id <DFINetworkServiceProtocol> interface = [[NSClassFromString(name) alloc] init];
+
     if (interface && [interface respondsToSelector:@selector(fetchDataWithURLParamaters:)]) {
         [interface fetchDataWithURLParamaters:paramaters];
+    } else {
+        DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(fetchDataWithURLParamaters:)
     }
 }
 
@@ -30,17 +37,15 @@
              Paramaters:(NSDictionary *)paramaters
                delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate {
     
-    id <DFINetworkServiceProtocol> interface = nil;
-    
-    id networkService = [[NSClassFromString(name) alloc] init];
-    
-    interface = networkService;
+    id <DFINetworkServiceProtocol> interface = [[NSClassFromString(name) alloc] init];
     
     if (interface &&
         [interface respondsToSelector:@selector(fetchDataWithURLParamaters:delegate:)]) {
         
         [interface fetchDataWithURLParamaters:paramaters
                                      delegate:delegate];
+    } else {
+        DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(fetchDataWithURLParamaters:delegate:)
     }
 }
 
@@ -48,34 +53,26 @@
              Paramaters:(NSDictionary *)paramaters
             resultBlock:(DFIAPIRequestResultBlock)result {
     
-    id <DFINetworkServiceProtocol> interface = nil;
-    
-    id networkService = [[NSClassFromString(name) alloc] init];
-    
-    interface = networkService;
-    
+    id <DFINetworkServiceProtocol> interface = [[NSClassFromString(name) alloc] init];
+
     if (interface &&
         [interface respondsToSelector:@selector(fetchDataWithURLParamaters:resultBlock:)]) {
         
         [interface fetchDataWithURLParamaters:paramaters
-                                  resultBlock:^(id ret) {
-                                      if (result) {
-                                          result(ret);
-                                      }
-                                  }];
+                                  resultBlock:result];
+    } else {
+        DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(fetchDataWithURLParamaters:resultBlock:)
     }
 }
 
 + (void)sendDataByName:(NSString *)name Paramaters:(NSDictionary *)paramaters {
     
-    id <DFINetworkServiceProtocol> interface = nil;
-    
-    id networkService = [[NSClassFromString(name) alloc] init];
-    
-    interface = networkService;
+    id <DFINetworkServiceProtocol> interface = [[NSClassFromString(name) alloc] init];
     
     if (interface && [interface respondsToSelector:@selector(sendDataWithURLParamaters:)]) {
         [interface sendDataWithURLParamaters:paramaters];
+    } else {
+        DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(sendDataWithURLParamaters:)
     }
 }
 
@@ -83,17 +80,15 @@
             Paramaters:(NSDictionary *)paramaters
               delegate:(id<DFINetworkServiceAPIRequestDelegate>)delegate {
     
-    id <DFINetworkServiceProtocol> interface = nil;
-    
-    id networkService = [[NSClassFromString(name) alloc] init];
-    
-    interface = networkService;
-    
+    id <DFINetworkServiceProtocol> interface = [[NSClassFromString(name) alloc] init];
+
     if (interface &&
         [interface respondsToSelector:@selector(sendDataWithURLParamaters:delegate:)]) {
         
         [interface sendDataWithURLParamaters:paramaters
                                     delegate:delegate];
+    } else {
+        DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(sendDataWithURLParamaters:delegate:)
     }
 }
 
@@ -101,21 +96,15 @@
             Paramaters:(NSDictionary *)paramaters
            resultBlock:(DFIAPIRequestResultBlock)result {
     
-    id <DFINetworkServiceProtocol> interface = nil;
-    
-    id networkService = [[NSClassFromString(name) alloc] init];
-    
-    interface = networkService;
-    
+    id <DFINetworkServiceProtocol> interface = [[NSClassFromString(name) alloc] init];
+
     if (interface &&
         [interface respondsToSelector:@selector(sendDataWithURLParamaters:resultBlock:)]) {
         
         [interface sendDataWithURLParamaters:paramaters
-                                 resultBlock:^(id ret) {
-                                     if (result) {
-                                         result(ret);
-                                     }
-                                 }];
+                                 resultBlock:result];
+    } else {
+        DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(sendDataWithURLParamaters:resultBlock:)
     }
 }
 
@@ -124,14 +113,15 @@
 }
 
 @end
+#undef DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION
 
 @implementation DFINetworkService (DataRequest)
 
 + (void)uploadDataToURL:(NSString *)URLString
                withData:(NSData *)data
           progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-           successBlock:(DFISuccessBlock)successBlock
-              failBlock:(DFIFailBlock)failBlock {
+           successBlock:(DFINetworkRequestSuccessBlock)successBlock
+              failBlock:(DFINetworkRequestFailBlock)failBlock {
     
     [DFINetworkHTTPRequestService uploadDataToURL:URLString
                                          withData:data
@@ -143,8 +133,8 @@
 + (void)downloadDataWithURL:(NSString *)URLString
                 destination:(NSString *)filePath
               progressBlock:(void(^)(double progress, int64_t totalCountUnit))progressBlock
-               successBlock:(DFISuccessBlock)successBlock
-                  failBlock:(DFIFailBlock)failBlock {
+               successBlock:(DFINetworkRequestSuccessBlock)successBlock
+                  failBlock:(DFINetworkRequestFailBlock)failBlock {
     
     [DFINetworkHTTPRequestService downloadWithURL:URLString
                               destinationFilePath:filePath
@@ -159,7 +149,23 @@
 
 @end
 
+@implementation DFINetworkService (Configuration)
+
++ (void)setHTTPNetworkServiceConfiguration:(DFINetworkHTTPConfiguration *)configuration {
+    [DFINetworkHTTPRequestService setHTTPRequestConfiguration:configuration];
+}
+
++ (void)setHTTPSNetworkServiceConfiguration:(DFINetworkHTTPSecurityConfiguration *)configuration {
+    [DFINetworkHTTPRequestService setHTTPSRequestConfiguration:configuration];
+}
+
+@end
+
 @implementation DFINetworkService (Cache)
+
++ (void)enableURLCache:(BOOL)enableURLCache {
+    [DFINetworkHTTPRequestService setEnableCache:enableURLCache];
+}
 
 + (NSUInteger)currentURLCacheMemoryUsage {
     return [[NSURLCache sharedURLCache] currentMemoryUsage];

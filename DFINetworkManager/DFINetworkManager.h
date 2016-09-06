@@ -17,17 +17,18 @@ FOUNDATION_EXPORT const unsigned char DFINetworkManagerVersionString[];
 #ifdef __OBJC__
 
 #import "DFINetworkManagerTypes.h"
-#import "DFINetworkService-Protocol.h"
+#import "DFINetworkServiceProtocol.h"
 #import "DFINetworkService.h"
 #import "DFINetworkAPIRequest.h"
 #import "DFINetworkServiceAPIRequestDelegate.h"
 #import "DFINetworkReachabilityManager.h"
 #import "DFINetworkManagerDefines.h"
 #import "DFINetworkNotificationNames.h"
+#import "DFINetworkHTTPConfiguration.h"
 
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
 #import "DFINetworkService+RACSupport.h"
-#import "DFINetworkServiceRACSupport-Protocol.h"
+#import "DFINetworkServiceRACSupportProtocol.h"
 #endif
 
 #endif

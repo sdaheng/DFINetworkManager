@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 
+#import "DFINetworkManager.h"
+
 @interface DFINetworkManagerDemoTests : XCTestCase
 
 @end

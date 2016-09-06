@@ -8,9 +8,16 @@
 
 #import "DFINetworkService+RACSupport.h"
 
-#import "DFINetworkServiceRACSupport-Protocol.h"
+#import "DFINetworkServiceRACSupportProtocol.h"
 
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
+
+#ifndef DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION
+#   define DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(sel)                                    \
+        @throw [NSException exceptionWithName:@"DFINetworkService Protocol Method Not Implement"  \
+                                     reason:[NSString stringWithFormat:@"%s NOT implement", #sel] \
+                                   userInfo:nil];
+#endif
 
 @implementation DFINetworkService (RACSupport)
 
@@ -25,6 +32,8 @@
     if (interface &&
         [interface respondsToSelector:@selector(signalFetchDataWithURLParamaters:)]) {
         return [interface signalFetchDataWithURLParamaters:paramaters];
+    } else {
+        DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(signalFetchDataWithURLParamaters:)
     }
     
     return [RACSignal empty];
@@ -43,10 +52,13 @@
         [interface respondsToSelector:@selector(signalSendDataWithURLParamaters:)]) {
         
         return [interface signalSendDataWithURLParamaters:paramaters];
+    } else {
+        DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION(signalSendDataWithURLParamaters:)
     }
     
     return [RACSignal empty];
 }
 
 @end
+#undef DFI_NETWORK_SERVICE_IMPLEMENT_METHOD_EXCEPTION
 #endif
