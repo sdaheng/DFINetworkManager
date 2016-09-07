@@ -31,16 +31,19 @@
 
 #if __has_include(<ReactiveCocoa/ReactiveCocoa.h>)
     #define SUBSCRIBER_DATA_HANDLER(subscriber, success, result) \
-            SUBSCRIBER_DATA_HANDLER_4(subscriber, success, result, @"")
+            SUBSCRIBER_DATA_HANDLER_5(subscriber, success, result, 0, @"")
 
-    #define SUBSCRIBER_DATA_HANDLER_4(subscriber, success, result, errorDescription) \
+    #define SUBSCRIBER_DATA_HANDLER_WITH_ERROR(subscriber, success, result, errorCode, errorDescription) \
+            SUBSCRIBER_DATA_HANDLER_5(subscriber, success, result, errorCode, errorDescritpion)
+
+    #define SUBSCRIBER_DATA_HANDLER_5(subscriber, success, result, errorCode, errorDescription) \
             do {               \
                 if (success) { \
                     [subscriber sendNext:result];  \
                     [subscriber sendCompleted];    \
                 } else {                           \
-                    NSError *error = [NSError errorWithDomain:@"NetworkRequest Error"     \
-                                                         code:1                           \
+                    NSError *error = [NSError errorWithDomain:@"NetworkRequest Error"           \
+                                                         code:errorCode                         \
                                                      userInfo:@{@"reason" : errorDescription}]; \
                                                                                                 \
                     [subscriber sendError:error]; \

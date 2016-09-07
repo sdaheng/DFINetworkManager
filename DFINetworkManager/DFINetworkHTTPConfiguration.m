@@ -22,8 +22,6 @@
 
 #import "DFINetworkHTTPConfiguration.h"
 
-#import <objc/runtime.h>
-
 @interface DFINetworkHTTPConfiguration ()
 
 @property (nonatomic, copy) NSDictionary <NSString *, NSString *> *HTTPRequestHeaders;
