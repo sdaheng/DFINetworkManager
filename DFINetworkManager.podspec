@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DFINetworkManager"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "A lib wrap AFNetworking."
 
   # This description is used to generate tags and improve search results.
@@ -76,7 +76,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/sdaheng/DFINetworkManager.git", :tag => "0.0.2" }
+  s.source       = { :git => "https://github.com/sdaheng/DFINetworkManager.git", :tag => "0.0.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   s.exclude_files = "Classes/Exclude"
 
   s.public_header_files = ['DFINetworkManager/DFINetworkManagerTypes.h',
-	'DFINetworkManager/DFINetworkServiceInterface.h',
+	'DFINetworkManager/DFINetworkServiceProtocol.h',
 	'DFINetworkManager/DFINetworkService.h',
 	'DFINetworkManager/DFINetworkAPIRequest.h',
 	'DFINetworkManager/DFINetworkServiceAPIRequestDelegate.h',
@@ -99,8 +99,7 @@ Pod::Spec.new do |s|
 	'DFINetworkManager/DFINetworkManagerDefines.h',
 	'DFINetworkManager/DFINetworkNotificationNames.h',
 	'DFINetworkManager/DFINetworkService+RACSupport.h',
-	'DFINetworkManager/DFINetworkServiceRACSupport-Protocol.h'
-	'DFINetworkManager/DFINetworkDataRequest.h']
+	'DFINetworkManager/DFINetworkServiceRACSupportProtocol.h']
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
