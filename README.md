@@ -59,7 +59,7 @@ iOS 8.0+
 
 首先，你需要新建一个文件，名字随便你取。
 
-![QQ20160906-0@2x](DFINetworkManager/NewFile.png)
+![QQ20160906-0@2x](https://github.com/sdaheng/DFINetworkManager/NewFile.png)
 
 `DFINetworkServiceProtocol`中提供Block、Delegation、Notification、RACSignal的方式来获取返回值。
 
