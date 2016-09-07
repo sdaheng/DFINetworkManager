@@ -13,7 +13,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-  pod 'DFINetworkManager', '~> 0.02'
+  pod 'DFINetworkManager'
 end
 ```
 
