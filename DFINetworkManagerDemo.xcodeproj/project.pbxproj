@@ -10,6 +10,7 @@
 		2A53FE6A1D6AE9EC0019AB9D /* DFINetworkHTTPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A53FE691D6AE9EC0019AB9D /* DFINetworkHTTPConfiguration.m */; };
 		2A53FE6D1D6B35FF0019AB9D /* DFINetworkHTTPRequestService+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A53FE6C1D6B35FF0019AB9D /* DFINetworkHTTPRequestService+Log.m */; };
 		2A53FE741D6C49EB0019AB9D /* NASendData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A53FE731D6C49EB0019AB9D /* NASendData.m */; };
+		2A9E59311D7FF20B00DACB23 /* NewFile.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E59301D7FF20B00DACB23 /* NewFile.png */; };
 		6E10DD5A1D66D9D600FF9DB3 /* NAFetchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E10DD591D66D9D600FF9DB3 /* NAFetchData.m */; };
 		6E449D721CB8B47300165E9B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D711CB8B47300165E9B /* main.m */; };
 		6E449D751CB8B47300165E9B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D741CB8B47300165E9B /* AppDelegate.m */; };
@@ -46,6 +47,7 @@
 		2A53FE6C1D6B35FF0019AB9D /* DFINetworkHTTPRequestService+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DFINetworkHTTPRequestService+Log.m"; sourceTree = "<group>"; };
 		2A53FE721D6C49EB0019AB9D /* NASendData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NASendData.h; sourceTree = "<group>"; };
 		2A53FE731D6C49EB0019AB9D /* NASendData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NASendData.m; sourceTree = "<group>"; };
+		2A9E59301D7FF20B00DACB23 /* NewFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewFile.png; sourceTree = "<group>"; };
 		35D79C6E7BAE8253348CD76B /* Pods-DFINetworkManagerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFINetworkManagerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFINetworkManagerDemo/Pods-DFINetworkManagerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		42147CE9228F77F79EA21560 /* Pods-DFINetworkManagerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFINetworkManagerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DFINetworkManagerDemo/Pods-DFINetworkManagerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5F634649655F2FE20BDA9C11 /* Pods_DFINetworkManagerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFINetworkManagerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,14 @@
 			name = Reachablity;
 			sourceTree = "<group>";
 		};
+		2A9E59321D7FF21100DACB23 /* Snapshot */ = {
+			isa = PBXGroup;
+			children = (
+				2A9E59301D7FF20B00DACB23 /* NewFile.png */,
+			);
+			name = Snapshot;
+			sourceTree = "<group>";
+		};
 		30CC323B7596B23096542B04 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +209,7 @@
 				6E449D7E1CB8B47300165E9B /* LaunchScreen.storyboard */,
 				6E449D811CB8B47300165E9B /* Info.plist */,
 				6E449D701CB8B47300165E9B /* Supporting Files */,
+				2A9E59321D7FF21100DACB23 /* Snapshot */,
 			);
 			path = DFINetworkManagerDemo;
 			sourceTree = "<group>";
@@ -334,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9E59311D7FF20B00DACB23 /* NewFile.png in Resources */,
 				6E449D801CB8B47300165E9B /* LaunchScreen.storyboard in Resources */,
 				6E449D7D1CB8B47300165E9B /* Assets.xcassets in Resources */,
 				6E449D7B1CB8B47300165E9B /* Main.storyboard in Resources */,
