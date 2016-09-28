@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 #import "DFINetworkReachabilityManager.h"
-#import "AFNetworkReachabilityManager.h"
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 
 NSString * const kDFINetworkReachabilityNotification = @"kDFINetworkReachabilityNotification";
 NSString * const kDFINetworkReachabilityStatusKey = @"kDFINetworkReachabilityStatusKey";

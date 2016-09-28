@@ -96,8 +96,6 @@
                resultWithResponseObject:responseObject
                            successBlock:success
                               failBlock:fail];
-         
-         [self storeURLCacheWithDataTask:task data:responseObject];
       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          fail ? fail(error) : nil;
      }];
@@ -131,7 +129,6 @@
                  resultWithResponseObject:responseObject
                              successBlock:success
                                 failBlock:fail];
-           [self storeURLCacheWithDataTask:task data:responseObject];
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             fail ? fail(error) : nil;
       }];

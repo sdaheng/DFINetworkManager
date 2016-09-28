@@ -11,6 +11,10 @@
 		2A53FE6D1D6B35FF0019AB9D /* DFINetworkHTTPRequestService+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A53FE6C1D6B35FF0019AB9D /* DFINetworkHTTPRequestService+Log.m */; };
 		2A53FE741D6C49EB0019AB9D /* NASendData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A53FE731D6C49EB0019AB9D /* NASendData.m */; };
 		2A9E59311D7FF20B00DACB23 /* NewFile.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E59301D7FF20B00DACB23 /* NewFile.png */; };
+		2A9E59421D802B5500DACB23 /* DFINetworkManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9E59381D802B5500DACB23 /* DFINetworkManager.framework */; };
+		2A9E59491D802B5500DACB23 /* DFINetworkManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E59481D802B5500DACB23 /* DFINetworkManagerTests.m */; };
+		2A9E594D1D802B5500DACB23 /* DFINetworkManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9E59381D802B5500DACB23 /* DFINetworkManager.framework */; };
+		2A9E594E1D802B5500DACB23 /* DFINetworkManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9E59381D802B5500DACB23 /* DFINetworkManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6E10DD5A1D66D9D600FF9DB3 /* NAFetchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E10DD591D66D9D600FF9DB3 /* NAFetchData.m */; };
 		6E449D721CB8B47300165E9B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D711CB8B47300165E9B /* main.m */; };
 		6E449D751CB8B47300165E9B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E449D741CB8B47300165E9B /* AppDelegate.m */; };
@@ -31,6 +35,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2A9E59431D802B5500DACB23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E449D651CB8B47300165E9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A9E59371D802B5500DACB23;
+			remoteInfo = DFINetworkManager;
+		};
+		2A9E59451D802B5500DACB23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E449D651CB8B47300165E9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E449D6C1CB8B47300165E9B;
+			remoteInfo = DFINetworkManagerDemo;
+		};
+		2A9E594B1D802B5500DACB23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E449D651CB8B47300165E9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A9E59371D802B5500DACB23;
+			remoteInfo = DFINetworkManager;
+		};
 		6E449D871CB8B47300165E9B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E449D651CB8B47300165E9B /* Project object */;
@@ -40,6 +65,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2A9E59521D802B5500DACB23 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2A9E594E1D802B5500DACB23 /* DFINetworkManager.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2A53FE681D6AE9EC0019AB9D /* DFINetworkHTTPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFINetworkHTTPConfiguration.h; sourceTree = "<group>"; };
 		2A53FE691D6AE9EC0019AB9D /* DFINetworkHTTPConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFINetworkHTTPConfiguration.m; sourceTree = "<group>"; };
@@ -48,6 +87,11 @@
 		2A53FE721D6C49EB0019AB9D /* NASendData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NASendData.h; sourceTree = "<group>"; };
 		2A53FE731D6C49EB0019AB9D /* NASendData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NASendData.m; sourceTree = "<group>"; };
 		2A9E59301D7FF20B00DACB23 /* NewFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewFile.png; sourceTree = "<group>"; };
+		2A9E59381D802B5500DACB23 /* DFINetworkManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DFINetworkManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A9E593C1D802B5500DACB23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = DFINetworkManager/Info.plist; sourceTree = "<group>"; };
+		2A9E59411D802B5500DACB23 /* DFINetworkManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DFINetworkManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A9E59481D802B5500DACB23 /* DFINetworkManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFINetworkManagerTests.m; sourceTree = "<group>"; };
+		2A9E594A1D802B5500DACB23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35D79C6E7BAE8253348CD76B /* Pods-DFINetworkManagerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFINetworkManagerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFINetworkManagerDemo/Pods-DFINetworkManagerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		42147CE9228F77F79EA21560 /* Pods-DFINetworkManagerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFINetworkManagerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DFINetworkManagerDemo/Pods-DFINetworkManagerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5F634649655F2FE20BDA9C11 /* Pods_DFINetworkManagerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFINetworkManagerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,11 +137,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A9E59341D802B5500DACB23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A9E593E1D802B5500DACB23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9E59421D802B5500DACB23 /* DFINetworkManager.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6E449D6A1CB8B47300165E9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DCBA1581E4AA036A8AE33F0D /* Pods_DFINetworkManagerDemo.framework in Frameworks */,
+				2A9E594D1D802B5500DACB23 /* DFINetworkManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +208,8 @@
 		2A53FE711D6C053C0019AB9D /* Reachablity */ = {
 			isa = PBXGroup;
 			children = (
+				6E449DB21CB8B49A00165E9B /* DFINetworkNotificationNames.h */,
+				6E449DB31CB8B49A00165E9B /* DFINetworkNotificationNames.m */,
 				6E449DB41CB8B49A00165E9B /* DFINetworkReachabilityManager.h */,
 				6E449DB51CB8B49A00165E9B /* DFINetworkReachabilityManager.m */,
 			);
@@ -160,6 +222,15 @@
 				2A9E59301D7FF20B00DACB23 /* NewFile.png */,
 			);
 			name = Snapshot;
+			sourceTree = "<group>";
+		};
+		2A9E59471D802B5500DACB23 /* DFINetworkManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2A9E59481D802B5500DACB23 /* DFINetworkManagerTests.m */,
+				2A9E594A1D802B5500DACB23 /* Info.plist */,
+			);
+			path = DFINetworkManagerTests;
 			sourceTree = "<group>";
 		};
 		30CC323B7596B23096542B04 /* Pods */ = {
@@ -175,8 +246,10 @@
 			isa = PBXGroup;
 			children = (
 				6E449DA31CB8B49A00165E9B /* DFINetworkManager */,
+				2A9E593C1D802B5500DACB23 /* Info.plist */,
 				6E449D6F1CB8B47300165E9B /* DFINetworkManagerDemo */,
 				6E449D891CB8B47300165E9B /* DFINetworkManagerDemoTests */,
+				2A9E59471D802B5500DACB23 /* DFINetworkManagerTests */,
 				6E449D6E1CB8B47300165E9B /* Products */,
 				30CC323B7596B23096542B04 /* Pods */,
 				EACD2ADE364B5012173F320A /* Frameworks */,
@@ -188,6 +261,8 @@
 			children = (
 				6E449D6D1CB8B47300165E9B /* DFINetworkManagerDemo.app */,
 				6E449D861CB8B47300165E9B /* DFINetworkManagerDemoTests.xctest */,
+				2A9E59381D802B5500DACB23 /* DFINetworkManager.framework */,
+				2A9E59411D802B5500DACB23 /* DFINetworkManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,8 +312,6 @@
 				6E449DAF1CB8B49A00165E9B /* DFINetworkManager.h */,
 				6E449DB01CB8B49A00165E9B /* DFINetworkManagerDefines.h */,
 				6E449DB11CB8B49A00165E9B /* DFINetworkManagerTypes.h */,
-				6E449DB21CB8B49A00165E9B /* DFINetworkNotificationNames.h */,
-				6E449DB31CB8B49A00165E9B /* DFINetworkNotificationNames.m */,
 				6E449DBD1CB8B49A00165E9B /* DFINetworkServiceProtocol.h */,
 				6E449DBA1CB8B49A00165E9B /* DFINetworkService.h */,
 				6E449DBB1CB8B49A00165E9B /* DFINetworkService.m */,
@@ -264,7 +337,54 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		2A9E59351D802B5500DACB23 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		2A9E59371D802B5500DACB23 /* DFINetworkManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A9E594F1D802B5500DACB23 /* Build configuration list for PBXNativeTarget "DFINetworkManager" */;
+			buildPhases = (
+				2A9E59331D802B5500DACB23 /* Sources */,
+				2A9E59341D802B5500DACB23 /* Frameworks */,
+				2A9E59351D802B5500DACB23 /* Headers */,
+				2A9E59361D802B5500DACB23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DFINetworkManager;
+			productName = DFINetworkManager;
+			productReference = 2A9E59381D802B5500DACB23 /* DFINetworkManager.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2A9E59401D802B5500DACB23 /* DFINetworkManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A9E59531D802B5500DACB23 /* Build configuration list for PBXNativeTarget "DFINetworkManagerTests" */;
+			buildPhases = (
+				2A9E593D1D802B5500DACB23 /* Sources */,
+				2A9E593E1D802B5500DACB23 /* Frameworks */,
+				2A9E593F1D802B5500DACB23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A9E59441D802B5500DACB23 /* PBXTargetDependency */,
+				2A9E59461D802B5500DACB23 /* PBXTargetDependency */,
+			);
+			name = DFINetworkManagerTests;
+			productName = DFINetworkManagerTests;
+			productReference = 2A9E59411D802B5500DACB23 /* DFINetworkManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6E449D6C1CB8B47300165E9B /* DFINetworkManagerDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E449D9A1CB8B47300165E9B /* Build configuration list for PBXNativeTarget "DFINetworkManagerDemo" */;
@@ -275,10 +395,12 @@
 				6E449D6B1CB8B47300165E9B /* Resources */,
 				7644D6AF3CA2025F93CB0920 /* [CP] Embed Pods Frameworks */,
 				B5DBE50BEAB5D43D533AF8C6 /* [CP] Copy Pods Resources */,
+				2A9E59521D802B5500DACB23 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2A9E594C1D802B5500DACB23 /* PBXTargetDependency */,
 			);
 			name = DFINetworkManagerDemo;
 			productName = DFINetworkManagerDemo;
@@ -312,8 +434,20 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = sdaheng;
 				TargetAttributes = {
+					2A9E59371D802B5500DACB23 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					2A9E59401D802B5500DACB23 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 6E449D6C1CB8B47300165E9B;
+					};
 					6E449D6C1CB8B47300165E9B = {
 						CreatedOnToolsVersion = 7.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					6E449D851CB8B47300165E9B = {
 						CreatedOnToolsVersion = 7.3;
@@ -336,11 +470,27 @@
 			targets = (
 				6E449D6C1CB8B47300165E9B /* DFINetworkManagerDemo */,
 				6E449D851CB8B47300165E9B /* DFINetworkManagerDemoTests */,
+				2A9E59371D802B5500DACB23 /* DFINetworkManager */,
+				2A9E59401D802B5500DACB23 /* DFINetworkManagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2A9E59361D802B5500DACB23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A9E593F1D802B5500DACB23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6E449D6B1CB8B47300165E9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,6 +560,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2A9E59331D802B5500DACB23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A9E593D1D802B5500DACB23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9E59491D802B5500DACB23 /* DFINetworkManagerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6E449D691CB8B47300165E9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -443,6 +608,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2A9E59441D802B5500DACB23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A9E59371D802B5500DACB23 /* DFINetworkManager */;
+			targetProxy = 2A9E59431D802B5500DACB23 /* PBXContainerItemProxy */;
+		};
+		2A9E59461D802B5500DACB23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E449D6C1CB8B47300165E9B /* DFINetworkManagerDemo */;
+			targetProxy = 2A9E59451D802B5500DACB23 /* PBXContainerItemProxy */;
+		};
+		2A9E594C1D802B5500DACB23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A9E59371D802B5500DACB23 /* DFINetworkManager */;
+			targetProxy = 2A9E594B1D802B5500DACB23 /* PBXContainerItemProxy */;
+		};
 		6E449D881CB8B47300165E9B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6E449D6C1CB8B47300165E9B /* DFINetworkManagerDemo */;
@@ -470,6 +650,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2A9E59501D802B5500DACB23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DFINetworkManager/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kibey.TestKBAD.DFINetworkManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2A9E59511D802B5500DACB23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DFINetworkManager/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kibey.TestKBAD.DFINetworkManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2A9E59541D802B5500DACB23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = DFINetworkManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kibey.TestKBAD.DFINetworkManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DFINetworkManagerDemo.app/DFINetworkManagerDemo";
+			};
+			name = Debug;
+		};
+		2A9E59551D802B5500DACB23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = DFINetworkManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kibey.TestKBAD.DFINetworkManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DFINetworkManagerDemo.app/DFINetworkManagerDemo";
+			};
+			name = Release;
+		};
 		6E449D981CB8B47300165E9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -558,6 +800,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				HEADER_SEARCH_PATHS = "/Users/sdaheng/DFINetworkManager/DFINetworkManager/**";
 				INFOPLIST_FILE = DFINetworkManagerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -573,6 +816,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				HEADER_SEARCH_PATHS = "/Users/sdaheng/DFINetworkManager/DFINetworkManager/**";
 				INFOPLIST_FILE = DFINetworkManagerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -609,6 +853,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A9E594F1D802B5500DACB23 /* Build configuration list for PBXNativeTarget "DFINetworkManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A9E59501D802B5500DACB23 /* Debug */,
+				2A9E59511D802B5500DACB23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A9E59531D802B5500DACB23 /* Build configuration list for PBXNativeTarget "DFINetworkManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A9E59541D802B5500DACB23 /* Debug */,
+				2A9E59551D802B5500DACB23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6E449D681CB8B47300165E9B /* Build configuration list for PBXProject "DFINetworkManagerDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
