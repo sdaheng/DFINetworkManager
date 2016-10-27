@@ -105,7 +105,9 @@ iOS 8.0+
 @end
 ```
 
-如果你在项目中使用了`ReactiveCocoa`,  你需要实现 `DFINetworkServiceRACSupportProtocol`  中的 `- (RACSignal *)signalFetchDataWithURLParamaters: `。
+如果你在项目中使用了`ReactiveCocoa`.
+
+你需要实现 `<DFINetworkServiceRACSupportProtocol>`中的`- (RACSignal *)signalFetchDataWithURLParamaters: `
 
 ```objective-c
 - (RACSignal *)signalFetchDataWithURLParamaters:(NSDictionary *)paramaters {
@@ -150,7 +152,7 @@ iOS 8.0+
 ```objective-c
 - (void)fetchDataReturnByBlock {
     [DFINetworkService fetchDataByName:@"NAFetchData"
-                            Paramaters:nil
+                            paramaters:nil
                            resultBlock:^(id ret) {
                                
                            }];
@@ -176,7 +178,7 @@ iOS 8.0+
 ```objective-c
 - (void)fetchDataReturnByNotification {
     [DFINetworkService fetchDataByName:@"NAFetchData"
-                            Paramaters:nil];
+                            paramaters:nil];
 }
 
 [[NSNotificationCenter defaultCenter] addObserver:self
@@ -198,7 +200,7 @@ iOS 8.0+
 ```objective-c
 - (void)fetchDataReturnByDelegte {
     [DFINetworkService fetchDataByName:@"NAFetchData"
-                            Paramaters:nil
+                            paramaters:nil
                               delegate:self];
 }
 
@@ -234,7 +236,7 @@ POST的使用方法和GET一样，只是把`fetch`换成`send`。
 ```objective-c
 - (void)sendDataByBlock {
     [DFINetworkService sendDataByName:@"NASendData"
-                            Paramaters:nil
+                            paramaters:nil
                            resultBlock:^(id ret) {
                                
                            }];
